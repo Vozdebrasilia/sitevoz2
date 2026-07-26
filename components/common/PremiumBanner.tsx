@@ -21,7 +21,7 @@ const ADS: Ad[] = [
     subtitle: 'Pé na areia em Jatiúca · Café da manhã regional · Vista mar',
     cta: 'Reserve com condição especial',
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80',
-    gradient: 'from-emerald-900/90 via-emerald-800/60 to-transparent',
+    gradient: 'from-emerald-900/90 via-emerald-800/70 to-emerald-900/40',
     accent: 'bg-emerald-400 text-emerald-950',
   },
   {
@@ -31,7 +31,7 @@ const ADS: Ad[] = [
     subtitle: 'Ceviches autorais, tiraditos e coquetelaria assinada',
     cta: 'Reserve sua mesa',
     image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80',
-    gradient: 'from-amber-950/90 via-amber-900/60 to-transparent',
+    gradient: 'from-amber-950/90 via-amber-900/70 to-amber-950/40',
     accent: 'bg-amber-400 text-amber-950',
   },
 ];
@@ -65,30 +65,39 @@ export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
       </div>
       <a
         href={ad.href}
-        className="group relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 bg-gray-900"
-        style={{ aspectRatio: '1200/220' }}
+        className="group relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 bg-gray-900 min-h-[180px] md:min-h-0"
+        style={{}}
       >
-        <img
-          src={ad.image}
-          alt={ad.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-        <div className={`absolute inset-0 bg-gradient-to-r ${ad.gradient}`} />
-        <div className="relative h-full flex flex-col justify-center px-6 md:px-10 text-white max-w-[70%]">
-          <div className="text-[10px] md:text-xs uppercase tracking-[0.25em] font-bold opacity-90 mb-1 md:mb-2">
-            {ad.eyebrow}
+        <div className="md:hidden">
+          <img src={ad.image} alt={ad.title} className="w-full h-40 object-cover" />
+          <div className="p-4 bg-gradient-to-b from-gray-900 to-black text-white">
+            <div className="text-[10px] uppercase tracking-[0.25em] font-bold opacity-90 mb-1">
+              {ad.eyebrow}
+            </div>
+            <div className="font-extrabold text-lg leading-tight mb-2">{ad.title}</div>
+            <div className="text-xs opacity-90 mb-3">{ad.subtitle}</div>
+            <span className={`inline-flex w-fit items-center gap-2 ${ad.accent} font-bold text-xs px-4 py-2 rounded-full shadow`}>
+              {ad.cta} →
+            </span>
           </div>
-          <div className="font-extrabold text-xl md:text-3xl leading-tight mb-1 md:mb-2 drop-shadow">
-            {ad.title}
+        </div>
+        <div className="hidden md:block relative" style={{ aspectRatio: '1200/220' }}>
+          <img
+            src={ad.image}
+            alt={ad.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+          <div className={`absolute inset-0 bg-gradient-to-r ${ad.gradient}`} />
+          <div className="relative h-full flex flex-col justify-center px-10 text-white max-w-[70%]">
+            <div className="text-xs uppercase tracking-[0.25em] font-bold opacity-90 mb-2">
+              {ad.eyebrow}
+            </div>
+            <div className="font-extrabold text-3xl leading-tight mb-2 drop-shadow">{ad.title}</div>
+            <div className="text-sm opacity-95 mb-3 max-w-md">{ad.subtitle}</div>
+            <span className={`inline-flex w-fit items-center gap-2 ${ad.accent} font-bold text-sm px-4 py-2 rounded-full shadow`}>
+              {ad.cta} →
+            </span>
           </div>
-          <div className="hidden md:block text-sm opacity-95 mb-3 max-w-md">
-            {ad.subtitle}
-          </div>
-          <span
-            className={`inline-flex w-fit items-center gap-2 ${ad.accent} font-bold text-xs md:text-sm px-4 py-2 rounded-full shadow`}
-          >
-            {ad.cta} →
-          </span>
         </div>
       </a>
     </div>
