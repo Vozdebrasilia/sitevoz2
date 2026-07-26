@@ -15,7 +15,7 @@ type Ad = {
 
 const ADS: Ad[] = [
   {
-    href: 'https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-macei',
+    href: 'https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-maceio,
     eyebrow: 'Resort 5 Estrelas · Maceió',
     title: 'Ritz Lagoa da Anta',
     subtitle: 'All inclusive à beira-mar em Jatiúca · Spa · Gastronomia premiada',
@@ -25,7 +25,7 @@ const ADS: Ad[] = [
     accent: 'bg-amber-400 text-blue-950',
   },
   {
-    href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em-',
+    href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em',
     eyebrow: 'Hospedagem Premium · Maceió',
     title: 'Hotel Tambaqui Praia',
     subtitle: 'Pé na areia em Jatiúca · Café da manhã regional · Vista mar',
