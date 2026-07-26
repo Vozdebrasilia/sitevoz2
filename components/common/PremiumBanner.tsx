@@ -15,6 +15,16 @@ type Ad = {
 
 const ADS: Ad[] = [
   {
+    href: 'https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-macei',
+    eyebrow: 'Resort 5 Estrelas · Maceió',
+    title: 'Ritz Lagoa da Anta',
+    subtitle: 'All inclusive à beira-mar em Jatiúca · Spa · Gastronomia premiada',
+    cta: 'Reserve com upgrade VOZ2026',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1600&q=80',
+    gradient: 'from-blue-950/90 via-blue-900/70 to-blue-950/40',
+    accent: 'bg-amber-400 text-blue-950',
+  },
+  {
     href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em-',
     eyebrow: 'Hospedagem Premium · Maceió',
     title: 'Hotel Tambaqui Praia',
@@ -66,7 +76,6 @@ export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
       <a
         href={ad.href}
         className="group relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 bg-gray-900 min-h-[180px] md:min-h-0"
-        style={{}}
       >
         <div className="md:hidden">
           <img src={ad.image} alt={ad.title} className="w-full h-40 object-cover" />
