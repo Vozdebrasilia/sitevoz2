@@ -15,7 +15,7 @@ type Ad = {
 
 const ADS: Ad[] = [
   {
-    href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em-maceio',
+    href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em',
     eyebrow: 'Hospedagem Premium · Maceió',
     title: 'Hotel Tambaqui Praia',
     subtitle: 'Pé na areia em Jatiúca · Café da manhã regional · Vista mar',
@@ -65,8 +65,6 @@ export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
       </div>
       <a
         href={ad.href}
-        target="_blank"
-        rel="noopener noreferrer"
         className="group relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 bg-gray-900"
         style={{ aspectRatio: '1200/220' }}
       >
