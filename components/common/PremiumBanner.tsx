@@ -7,6 +7,11 @@ type Ad = {
   eyebrow: string;
   title: string;
   subtitle: string;
+  address: string;
+  site: string;
+  siteLabel: string;
+  whatsapp: string;
+  whatsappLabel: string;
   cta: string;
   image: string;
   gradient: string;
@@ -15,10 +20,15 @@ type Ad = {
 
 const ADS: Ad[] = [
   {
-    href: 'https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-maceio,
+    href: 'https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-maceio',
     eyebrow: 'Resort 5 Estrelas · Maceió',
     title: 'Ritz Lagoa da Anta',
     subtitle: 'All inclusive à beira-mar em Jatiúca · Spa · Gastronomia premiada',
+    address: 'Av. Álvaro Otacílio, 6395 · Jatiúca · Maceió/AL',
+    site: 'https://www.ritzhoteis.com.br/hotel-ritz-lagoa-da-anta',
+    siteLabel: 'Reservar no site · ver tarifas',
+    whatsapp: 'https://wa.me/558221222200?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20cota%C3%A7%C3%A3o%20com%20o%20cupom%20VOZ2026.',
+    whatsappLabel: 'WhatsApp (82) 2122-2200',
     cta: 'Reserve com upgrade VOZ2026',
     image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1600&q=80',
     gradient: 'from-blue-950/90 via-blue-900/70 to-blue-950/40',
@@ -29,6 +39,11 @@ const ADS: Ad[] = [
     eyebrow: 'Hospedagem Premium · Maceió',
     title: 'Hotel Tambaqui Praia',
     subtitle: 'Pé na areia em Jatiúca · Café da manhã regional · Vista mar',
+    address: 'Av. Doutor Antônio Gomes de Barros, 100 · Jatiúca · Maceió/AL',
+    site: 'https://www.booking.com/searchresults.html?ss=Hotel+Tambaqui+Praia+Macei%C3%B3',
+    siteLabel: 'Ver preços e disponibilidade',
+    whatsapp: 'https://wa.me/5582999990001?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20no%20Hotel%20Tambaqui%20Praia.',
+    whatsappLabel: 'WhatsApp (82) 99999-0001',
     cta: 'Reserve com condição especial',
     image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1600&q=80',
     gradient: 'from-emerald-900/90 via-emerald-800/70 to-emerald-900/40',
@@ -39,6 +54,11 @@ const ADS: Ad[] = [
     eyebrow: 'Gastronomia Premiada · Maceió',
     title: 'Wanchako Cozinha Peruana',
     subtitle: 'Ceviches autorais, tiraditos e coquetelaria assinada',
+    address: 'Av. Dr. Antônio Gouveia, 87 · Pajuçara · Maceió/AL',
+    site: 'https://www.wanchako.com.br',
+    siteLabel: 'Ver cardápio e reservar',
+    whatsapp: 'https://wa.me/558230251080?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20mesa%20no%20Wanchako.',
+    whatsappLabel: 'WhatsApp (82) 3025-1080',
     cta: 'Reserve sua mesa',
     image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1600&q=80',
     gradient: 'from-amber-950/90 via-amber-900/70 to-amber-950/40',
@@ -73,42 +93,57 @@ export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
           ))}
         </div>
       </div>
-      <a
-        href={ad.href}
-        className="group relative block rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 bg-gray-900 min-h-[180px] md:min-h-0"
-      >
+      <div className="relative rounded-2xl overflow-hidden shadow-lg border border-gray-200/60 bg-gray-900">
+        {/* Mobile */}
         <div className="md:hidden">
-          <img src={ad.image} alt={ad.title} className="w-full h-40 object-cover" />
+          <a href={ad.href} className="block">
+            <img src={ad.image} alt={ad.title} className="w-full h-40 object-cover" />
+          </a>
           <div className="p-4 bg-gradient-to-b from-gray-900 to-black text-white">
             <div className="text-[10px] uppercase tracking-[0.25em] font-bold opacity-90 mb-1">
               {ad.eyebrow}
             </div>
-            <div className="font-extrabold text-lg leading-tight mb-2">{ad.title}</div>
-            <div className="text-xs opacity-90 mb-3">{ad.subtitle}</div>
-            <span className={`inline-flex w-fit items-center gap-2 ${ad.accent} font-bold text-xs px-4 py-2 rounded-full shadow`}>
-              {ad.cta} →
-            </span>
+            <div className="font-extrabold text-lg leading-tight mb-1">{ad.title}</div>
+            <div className="text-xs opacity-90 mb-2">{ad.subtitle}</div>
+            <div className="text-[11px] opacity-80 mb-3">📍 {ad.address}</div>
+            <div className="flex flex-col gap-2">
+              <a href={ad.site} target="_blank" rel="noopener noreferrer" className={`inline-flex justify-center items-center gap-2 ${ad.accent} font-bold text-xs px-4 py-2 rounded-full shadow`}>
+                {ad.siteLabel} →
+              </a>
+              <a href={ad.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex justify-center items-center gap-2 bg-[#25D366] text-white font-bold text-xs px-4 py-2 rounded-full shadow">
+                💬 {ad.whatsappLabel}
+              </a>
+            </div>
           </div>
         </div>
-        <div className="hidden md:block relative" style={{ aspectRatio: '1200/220' }}>
-          <img
-            src={ad.image}
-            alt={ad.title}
-            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-          />
-          <div className={`absolute inset-0 bg-gradient-to-r ${ad.gradient}`} />
-          <div className="relative h-full flex flex-col justify-center px-10 text-white max-w-[70%]">
+        {/* Desktop */}
+        <div className="hidden md:block relative" style={{ aspectRatio: '1200/260' }}>
+          <a href={ad.href} className="absolute inset-0 group">
+            <img
+              src={ad.image}
+              alt={ad.title}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className={`absolute inset-0 bg-gradient-to-r ${ad.gradient}`} />
+          </a>
+          <div className="relative h-full flex flex-col justify-center px-10 text-white max-w-[70%] pointer-events-none">
             <div className="text-xs uppercase tracking-[0.25em] font-bold opacity-90 mb-2">
               {ad.eyebrow}
             </div>
-            <div className="font-extrabold text-3xl leading-tight mb-2 drop-shadow">{ad.title}</div>
-            <div className="text-sm opacity-95 mb-3 max-w-md">{ad.subtitle}</div>
-            <span className={`inline-flex w-fit items-center gap-2 ${ad.accent} font-bold text-sm px-4 py-2 rounded-full shadow`}>
-              {ad.cta} →
-            </span>
+            <div className="font-extrabold text-3xl leading-tight mb-1 drop-shadow">{ad.title}</div>
+            <div className="text-sm opacity-95 mb-1 max-w-md">{ad.subtitle}</div>
+            <div className="text-xs opacity-90 mb-3">📍 {ad.address}</div>
+            <div className="flex flex-wrap gap-2 pointer-events-auto">
+              <a href={ad.site} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 ${ad.accent} font-bold text-sm px-4 py-2 rounded-full shadow`}>
+                {ad.siteLabel} →
+              </a>
+              <a href={ad.whatsapp} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white font-bold text-sm px-4 py-2 rounded-full shadow">
+                💬 {ad.whatsappLabel}
+              </a>
+            </div>
           </div>
         </div>
-      </a>
+      </div>
     </div>
   );
 }
