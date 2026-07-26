@@ -11,8 +11,21 @@ import TrendingBar from '@/components/common/TrendingBar';
 import MosaicHighlights from '@/components/common/MosaicHighlights';
 
 export default async function Home() {
-  const posts = await getPosts(100);
+  const posts = await getPosts(150);
   const interviews = await getInterviewPosts(40);
+
+  const categories: { title: string; category: string }[] = [
+    { title: 'Política', category: 'politica' },
+    { title: 'Distrito Federal', category: 'distrito-federal' },
+    { title: 'Turismo', category: 'turismo' },
+    { title: 'Gastronomia', category: 'gastronomia' },
+    { title: 'Economia', category: 'economia' },
+    { title: 'Saúde', category: 'saude' },
+    { title: 'Tecnologia', category: 'tecnologia' },
+    { title: 'Esportes', category: 'esportes' },
+    { title: 'Internacional', category: 'internacional' },
+    { title: 'Cultura', category: 'cultura' },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -23,7 +36,7 @@ export default async function Home() {
 
         <HeroCarousel posts={posts.slice(0, 5)} />
 
-        <div className="mt-6">
+        <div className="mt-4">
           <PremiumBanner variant={0} />
         </div>
 
@@ -35,25 +48,30 @@ export default async function Home() {
 
         <MosaicHighlights posts={posts} />
 
-        <div className="bg-gray-50 py-12">
+        {/* Grid principal: categorias densas + sidebar */}
+        <div className="max-w-[1400px] mx-auto px-4 py-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="lg:col-span-2 space-y-10">
+              {categories.map((c) => (
+                <CategoriesSection key={c.category} title={c.title} category={c.category} />
+              ))}
+            </div>
+            <aside className="lg:col-span-1">
+              <div className="lg:sticky lg:top-24">
+                <Sidebar />
+              </div>
+            </aside>
+          </div>
+        </div>
+
+        <div className="bg-gray-50 py-10">
           <div className="max-w-[1400px] mx-auto px-4">
             <InterviewsSection posts={interviews} />
           </div>
         </div>
 
-        <div className="max-w-[1400px] mx-auto px-4 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-2 space-y-12">
-              <CategoriesSection />
-            </div>
-            <div className="lg:col-span-1">
-              <Sidebar />
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-6 mb-10">
-          <PremiumBanner variant={1} />
+        <div className="mt-2 mb-10">
+          <PremiumBanner variant={2} />
         </div>
       </main>
 
