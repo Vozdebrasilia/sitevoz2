@@ -24,16 +24,57 @@ export default function Sidebar() {
   return (
     <div className="space-y-6">
 
-      {/* Anúncio 300x250 */}
-      <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100 flex flex-col items-center">
-        <span className="text-[10px] text-gray-400 font-semibold mb-2 tracking-wider">PUBLICIDADE</span>
-        <AdComponent token="02cda84a0e4149c2855e170b9c26dedd" width="300" height="250" />
+      {/* Anúncio - Hotel Tambaqui Praia */}
+      <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+        <span className="block text-[10px] text-gray-400 font-semibold tracking-wider text-center pt-3">PUBLICIDADE</span>
+        <a
+          href="https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em-maceio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-3"
+        >
+          <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: '300/250' }}>
+            <img
+              src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=1200&q=80"
+              alt="Hotel Tambaqui Praia - Maceió"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+              <div className="text-[10px] uppercase tracking-wider text-emerald-300 font-semibold">Hospede-se em Maceió</div>
+              <div className="font-bold text-base leading-tight">Hotel Tambaqui Praia</div>
+              <div className="text-xs opacity-90">Jatiúca · Pé na areia · Reserve já</div>
+            </div>
+          </div>
+        </a>
       </div>
 
-      {/* Anúncio 300x600 */}
-      <div className="bg-white rounded-xl shadow-md p-4 border border-gray-100 flex flex-col items-center">
-        <span className="text-[10px] text-gray-400 font-semibold mb-2 tracking-wider">PUBLICIDADE</span>
-        <AdComponent token="528c9f9e89c0496a8d9da2ba4bfb1124" width="300" height="600" />
+      {/* Anúncio - Wanchako Restaurante */}
+      <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+        <span className="block text-[10px] text-gray-400 font-semibold tracking-wider text-center pt-3">PUBLICIDADE</span>
+        <a
+          href="https://www.vozdebrasilia.com.br/noticia/wanchako-cozinha-peruana-premiada-e-destaque-gastronomico-de-maceio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block p-3"
+        >
+          <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: '300/600' }}>
+            <img
+              src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1200&q=80"
+              alt="Wanchako Restaurante Peruano - Maceió"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/40 to-black/10" />
+            <div className="absolute top-3 left-3 right-3 text-white">
+              <div className="text-[10px] uppercase tracking-widest text-amber-300 font-bold">Gastronomia Premiada</div>
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+              <div className="font-extrabold text-2xl leading-tight mb-1">Wanchako</div>
+              <div className="text-sm opacity-95 mb-3">Alta cozinha peruana em Maceió · Ceviches, tiraditos e coquetéis autorais</div>
+              <span className="inline-block bg-amber-400 text-black text-xs font-bold px-3 py-1.5 rounded-full">Reserve sua mesa →</span>
+            </div>
+          </div>
+        </a>
       </div>
  
       {/* Clima & Economia */}
