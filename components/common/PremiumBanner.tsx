@@ -15,7 +15,7 @@ type Ad = {
 
 const ADS: Ad[] = [
   {
-    href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em',
+    href: 'https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em-',
     eyebrow: 'Hospedagem Premium · Maceió',
     title: 'Hotel Tambaqui Praia',
     subtitle: 'Pé na areia em Jatiúca · Café da manhã regional · Vista mar',
