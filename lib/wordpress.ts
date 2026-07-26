@@ -208,10 +208,10 @@ function normalizeLovablePost(item: any) {
 
 async function fetchLiveNews(limit = 12): Promise<any[] | null> {
   try {
-    const res = await fetch(`${LOVABLE_FEED}?limit=${limit}`, {
+   const res = await fetch(`${LOVABLE_FEED}?limit=${limit}`, {
       method: 'GET',
       headers: fetchHeaders,
-      cache: 'no-store'
+      next: { revalidate: 60 }
     } as any);
     if (!res.ok) return null;
     const data = await res.json();
@@ -285,4 +285,4 @@ export async function getPostsByCategorySlug(slug: string, limit = 20, page = 1)
   });
   return filtered.slice((page - 1) * limit, page * limit);
 }
-// rebuild: 1785030751 restore-home-and-refresh-feed
+// rebuild: 1785031220 restore-working-home-with-current-feed
