@@ -28,7 +28,7 @@ export default function Sidebar() {
       <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
         <span className="block text-[10px] text-gray-400 font-semibold tracking-wider text-center pt-3">PUBLICIDADE</span>
         <a
-          href="https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em-maceio"
+          href="https://www.vozdebrasilia.com.br/noticia/hotel-tambaqui-praia-hospedagem-premium-em-jatiuca-vira-febre-entre-turistas-em"
           target="_blank"
           rel="noopener noreferrer"
           className="block p-3"
