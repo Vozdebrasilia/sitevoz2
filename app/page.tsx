@@ -4,9 +4,9 @@ import LatestNews from '@/components/home/LatestNews';
 import InterviewsSection from '@/components/home/InterviewsSection';
 import Sidebar from '@/components/layout/Sidebar';
 import Footer from '@/components/layout/Footer';
-import CategoriesSection from '@/components/home/CategorySection'; // <-- IMPORT ADICIONADO
+import CategoriesSection from '@/components/home/CategorySection';
 import { getPosts, getInterviewPosts } from "../lib/wordpress";
-import AdComponent from '@/components/common/AdComponent';
+import PremiumBanner from '@/components/common/PremiumBanner';
 
 export default async function Home() {
   const posts = await getPosts(100);
@@ -17,10 +17,8 @@ export default async function Home() {
       <Header />
 
       <main className="pt-20">
-
-        {/* 🔥 BANNER ADICIONADO */}
-        <div className="w-full text-center my-5 px-4">
-          <AdComponent token="cad1456400464e69a8a7ada3d2ccab43" width="728" height="90" />
+        <div className="my-6">
+          <PremiumBanner variant={0} />
         </div>
 
         <HeroCarousel posts={posts.slice(0, 5)} />
@@ -39,23 +37,17 @@ export default async function Home() {
 
         <div className="max-w-[1400px] mx-auto px-4 py-12">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            
-            {/* COLUNA PRINCIPAL */}
             <div className="lg:col-span-2 space-y-12">
-              <CategoriesSection /> {/* <-- ADICIONADO AQUI */}
+              <CategoriesSection />
             </div>
-
-            {/* SIDEBAR */}
             <div className="lg:col-span-1">
               <Sidebar />
             </div>
-
           </div>
         </div>
 
-        {/* 🔥 BANNER RODAPÉ */}
-        <div className="w-full text-center my-8 px-4">
-          <AdComponent token="cad1456400464e69a8a7ada3d2ccab43" width="728" height="90" />
+        <div className="my-10">
+          <PremiumBanner variant={1} />
         </div>
       </main>
 
