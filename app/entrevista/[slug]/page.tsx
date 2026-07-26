@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { Play, Clock, User, Eye, Facebook, Twitter, Linkedin, Mail } from 'lucide-react';
 import { getPostBySlug, getInterviewPosts, getPosts } from '@/lib/wordpress';
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   try {
