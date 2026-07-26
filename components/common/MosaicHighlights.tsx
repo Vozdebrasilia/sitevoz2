@@ -1,0 +1,89 @@
+'use client';
+
+import Link from 'next/link';
+import { Clock } from 'lucide-react';
+
+function stripHtml(s: string) {
+  return String(s || '').replace(/<[^>]+>/g, '').replace(/&#8217;/g, "'").trim();
+}
+
+export default function MosaicHighlights({ posts = [] as any[] }) {
+  const items = (posts || []).slice(5, 11);
+  if (items.length < 4) return null;
+  const [big, ...rest] = items;
+  const smalls = rest.slice(0, 4);
+
+  return (
+    <section className="bg-gradient-to-b from-white to-gray-50 py-10">
+      <div className="max-w-[1400px] mx-auto px-4">
+        <div className="flex items-end justify-between mb-6">
+          <div>
+            <div className="text-[11px] tracking-[0.3em] uppercase text-green-700 font-black mb-1">
+              Editorial
+            </div>
+            <h2 className="text-2xl md:text-3xl font-black text-gray-900">Em Destaque Agora</h2>
+          </div>
+          <Link
+            href="/categoria/distrito-federal"
+            className="hidden md:inline text-sm font-bold text-green-700 hover:text-green-900"
+          >
+            Ver tudo →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+          <Link
+            href={`/noticia/${big.slug}`}
+            className="group relative md:row-span-2 md:col-span-2 rounded-2xl overflow-hidden bg-gray-900 min-h-[280px] md:min-h-[520px] shadow-lg"
+          >
+            <img
+              src={big.featured_image || big._embedded?.['wp:featuredmedia']?.[0]?.source_url}
+              alt={stripHtml(big.title?.rendered || big.title)}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
+              <span className="inline-block bg-green-600 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+                {big.category || 'Destaque'}
+              </span>
+              <h3 className="font-black text-xl md:text-3xl leading-tight mb-2 drop-shadow-lg">
+                {stripHtml(big.title?.rendered || big.title)}
+              </h3>
+              <p className="hidden md:block text-sm opacity-90 line-clamp-2 max-w-2xl">
+                {stripHtml(big.excerpt?.rendered || big.excerpt)}
+              </p>
+            </div>
+          </Link>
+
+          {smalls.map((p: any, i: number) => (
+            <Link
+              key={i}
+              href={`/noticia/${p.slug}`}
+              className="group relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-xl transition-shadow border border-gray-100"
+            >
+              <div className="relative h-40 overflow-hidden">
+                <img
+                  src={p.featured_image || p._embedded?.['wp:featuredmedia']?.[0]?.source_url}
+                  alt={stripHtml(p.title?.rendered || p.title)}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <span className="absolute top-2 left-2 bg-black/70 backdrop-blur text-white text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded">
+                  {p.category || 'Notícia'}
+                </span>
+              </div>
+              <div className="p-4">
+                <h4 className="font-bold text-gray-900 leading-snug line-clamp-2 group-hover:text-green-700 transition-colors">
+                  {stripHtml(p.title?.rendered || p.title)}
+                </h4>
+                <div className="flex items-center gap-1 text-[11px] text-gray-500 mt-2">
+                  <Clock className="w-3 h-3" />
+                  {new Date(p.date || p.published_at).toLocaleDateString('pt-BR')}
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
