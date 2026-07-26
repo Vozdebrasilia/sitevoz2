@@ -27,11 +27,11 @@ const TAMBAQUI: SidebarAd = {
   eyebrowClass: 'text-emerald-300',
   title: 'Hotel Tambaqui Praia',
   subtitle: 'Jatiúca · Pé na areia · Vista mar',
-  address: 'Av. Dr. Antônio Gomes de Barros, 100 · Jatiúca · Maceió/AL',
-  site: 'https://www.booking.com/searchresults.html?ss=Hotel+Tambaqui+Praia+Macei%C3%B3',
+  address: 'Rua Engenheiro Mário de Gusmão · Jatiúca · Maceió/AL',
+  site: 'https://hoteltambaqui.com.br/',
   siteLabel: 'Ver preços e reservar',
-  whatsapp: 'https://wa.me/5582999990001?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20no%20Hotel%20Tambaqui%20Praia.',
-  whatsappLabel: 'WhatsApp (82) 99999-0001',
+  whatsapp: 'https://wa.me/5582991165869?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20no%20Tambaqui%20Praia%20Hotel.',
+  whatsappLabel: 'WhatsApp (82) 99116-5869',
 };
 
 const WANCHAKO: SidebarAd = {
@@ -41,11 +41,11 @@ const WANCHAKO: SidebarAd = {
   eyebrowClass: 'text-amber-300',
   title: 'Wanchako',
   subtitle: 'Alta cozinha peruana · Ceviches e coquetéis autorais',
-  address: 'Av. Dr. Antônio Gouveia, 87 · Pajuçara · Maceió/AL',
+  address: 'Rua Prefeito Abdon Arroxelas, 147 · Ponta Verde · Maceió/AL',
   site: 'https://www.wanchako.com.br',
   siteLabel: 'Ver cardápio e reservar',
-  whatsapp: 'https://wa.me/558230251080?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20mesa%20no%20Wanchako.',
-  whatsappLabel: 'WhatsApp (82) 3025-1080',
+  whatsapp: 'https://wa.me/5582988899634?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20mesa%20no%20Wanchako.',
+  whatsappLabel: 'WhatsApp (82) 98889-9634',
 };
 
 const RITZ: SidebarAd = {
@@ -55,11 +55,11 @@ const RITZ: SidebarAd = {
   eyebrowClass: 'text-amber-300',
   title: 'Ritz Lagoa da Anta',
   subtitle: 'All inclusive · Jatiúca · Cupom VOZ2026',
-  address: 'Av. Álvaro Otacílio, 6395 · Jatiúca · Maceió/AL',
-  site: 'https://www.ritzhoteis.com.br/hotel-ritz-lagoa-da-anta',
+  address: 'Av. Brigadeiro Eduardo Gomes, 546 · Lagoa da Anta · Maceió/AL',
+  site: 'https://www.hoteisritzalagoas.com.br/lagoa/',
   siteLabel: 'Reservar · ver tarifas',
-  whatsapp: 'https://wa.me/558221222200?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20cota%C3%A7%C3%A3o%20com%20o%20cupom%20VOZ2026.',
-  whatsappLabel: 'WhatsApp (82) 2122-2200',
+  whatsapp: 'https://wa.me/558221214120?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20cota%C3%A7%C3%A3o%20com%20o%20cupom%20VOZ2026.',
+  whatsappLabel: 'Reservas (82) 2121-4120',
   stars: true,
 };
 
