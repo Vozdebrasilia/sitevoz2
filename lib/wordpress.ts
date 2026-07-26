@@ -208,10 +208,14 @@ function normalizeLovablePost(item: any) {
 
 async function fetchLiveNews(limit = 12): Promise<any[] | null> {
   try {
-   const res = await fetch(`${LOVABLE_FEED}?limit=${limit}`, {
+    const cacheBust = Math.floor(Date.now() / 60000);
+    const res = await fetch(`${LOVABLE_FEED}?limit=${limit}&v=${cacheBust}`, {
       method: 'GET',
-      headers: fetchHeaders,
-      next: { revalidate: 60 }
+      headers: {
+        ...fetchHeaders,
+        'Cache-Control': 'no-cache',
+      },
+      next: { revalidate: 0 }
     } as any);
     if (!res.ok) return null;
     const data = await res.json();
@@ -285,4 +289,4 @@ export async function getPostsByCategorySlug(slug: string, limit = 20, page = 1)
   });
   return filtered.slice((page - 1) * limit, page * limit);
 }
-// rebuild: 1785029171
+// rebuild: 1785030421 refresh-maceio-feed
