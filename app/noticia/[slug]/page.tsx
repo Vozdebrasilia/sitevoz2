@@ -5,7 +5,8 @@ import { Clock, Facebook, Twitter, Mail } from 'lucide-react';
 import { getPostBySlug, getPosts } from '@/lib/wordpress';
 import AdComponent from '@/components/common/AdComponent';
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 60;
 
 export async function generateStaticParams() {
   try {
