@@ -110,19 +110,29 @@ export default function Sidebar() {
         </div>
       </div>
  
-      {/* Banner rodapé */}
-      <div className="w-full">
+      {/* Anúncio - Ritz Lagoa da Anta 5 estrelas */}
+      <div className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100">
+        <span className="block text-[10px] text-gray-400 font-semibold tracking-wider text-center pt-3">PUBLICIDADE</span>
         <a
-          href="https://agenciabrasilia.df.gov.br/w/gdf-que-fez-acoes-do-governo-contribuem-para-melhorar-a-vida-da-populacao-em-diversas-areas"
+          href="https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-macei"
           target="_blank"
           rel="noopener noreferrer"
-          className="block w-full"
+          className="block p-3"
         >
-          <img
-            src="https://www.vozdebrasilia.com.br/wp-content/uploads/2026/03/728x90-1.gif"
-            alt="Banner publicitário"
-            className="w-full h-auto rounded-xl"
-          />
+          <div className="relative rounded-lg overflow-hidden" style={{ aspectRatio: '300/250' }}>
+            <img
+              src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80"
+              alt="Ritz Lagoa da Anta - Resort 5 estrelas em Maceió"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
+            <div className="absolute top-3 left-3 flex gap-0.5 text-amber-300 text-sm">★★★★★</div>
+            <div className="absolute bottom-0 left-0 right-0 p-3 text-white">
+              <div className="text-[10px] uppercase tracking-wider text-amber-300 font-semibold">Resort 5★ · Maceió</div>
+              <div className="font-bold text-base leading-tight">Ritz Lagoa da Anta</div>
+              <div className="text-xs opacity-90">All inclusive · Jatiúca · Upgrade VOZ2026</div>
+            </div>
+          </div>
         </a>
       </div>
  
