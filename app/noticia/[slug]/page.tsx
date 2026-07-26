@@ -5,15 +5,16 @@ import { Clock, Facebook, Twitter, Mail } from 'lucide-react';
 import { getPostBySlug, getPosts } from '@/lib/wordpress';
 import AdComponent from '@/components/common/AdComponent';
 
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
   try {
     const posts = await getPosts(200);
-    return posts.map((post: any) => ({
-      slug: post.slug,
-    }));
+    const slugs = (posts || []).map((post: any) => ({ slug: post.slug })).filter((p: any) => p.slug);
+    return slugs.length ? slugs : [{ slug: "placeholder" }];
   } catch (err) {
     console.error('Error generating static params for news detail:', err);
-    return [];
+    return [{ slug: "placeholder" }];
   }
 }
 
