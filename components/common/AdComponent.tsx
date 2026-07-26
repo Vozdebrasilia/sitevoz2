@@ -1,4 +1,4 @@
-use client';
+'use client';
 
 interface AdComponentProps {
   token: string;
@@ -66,7 +66,7 @@ const LOCAL_ADS: Record<string, LocalAd> = {
   },
 };
 
-function pickAd(width: string, height: string, token: string) {
+function pickAd(width: string, height: string, token: string): LocalAd {
   if (token.includes('528') || height === '600') return LOCAL_ADS.wanchako;
   if (token.includes('cad') || width === '728') return LOCAL_ADS.ritz;
   return LOCAL_ADS.tambaqui;
@@ -76,17 +76,18 @@ export default function AdComponent({ token, width, height }: AdComponentProps) 
   const ad = pickAd(width, height, token);
   const isWide = Number(width) >= 700;
   const isTall = Number(height) >= 500;
+  const minHeightClass = isWide ? 'min-h-[90px]' : isTall ? 'min-h-[600px]' : 'min-h-[250px]';
 
   return (
     <div
       className="mx-auto overflow-hidden rounded-xl shadow-md border border-gray-100 bg-white"
       style={{ maxWidth: `${width}px`, width: '100%', minHeight: `${height}px` }}
     >
-      <div className={`relative ${isWide ? 'min-h-[90px]' : isTall ? 'min-h-[600px]' : 'min-h-[250px]'}`}>
+      <div className={`relative ${minHeightClass}`}>
         <img src={ad.image} alt={ad.title} className="absolute inset-0 h-full w-full object-cover" />
         <div className={`absolute inset-0 bg-gradient-to-r ${ad.gradient}`} />
 
-        <div className={`relative z-10 flex h-full min-h-[inherit] text-white ${isWide ? 'items-center justify-between gap-4 p-4' : 'flex-col justify-end p-4'}`}>
+        <div className={`relative z-10 flex text-white ${minHeightClass} ${isWide ? 'items-center justify-between gap-4 p-4' : 'flex-col justify-end p-4'}`}>
           <a href={ad.href} className="block min-w-0" target="_blank" rel="noopener noreferrer">
             <div className="mb-2 inline-flex rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-black uppercase tracking-wide text-gray-900">
               {ad.badge}
