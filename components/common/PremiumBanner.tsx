@@ -64,6 +64,21 @@ const ADS: Ad[] = [
     gradient: 'from-amber-950/90 via-amber-900/70 to-amber-950/40',
     accent: 'bg-amber-400 text-amber-950',
   },
+  {
+    href: 'https://www.vozdebrasilia.com.br/noticia/restaurante-janga-praia-a-experiencia-de-frutos-do-mar-mais-desejada-de-maceio',
+    eyebrow: 'Frutos do Mar Premiados · Maceió',
+    title: 'Restaurante Janga Praia',
+    subtitle: '#2 melhor restaurante de Maceió · Lagosta, camarão e risotos autorais à beira-mar',
+    address: 'Av. Silvio Carlos Viana, 1731 · Cruz das Almas · Maceió/AL',
+    site: 'https://linktr.ee/PedidosJanga',
+    siteLabel: 'Ver cardápio · fazer pedido',
+    whatsapp: 'https://wa.me/558230283288?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20mesa%20no%20Janga%20Praia.',
+    whatsappLabel: 'Reservas (82) 3028-3288',
+    cta: 'Reserve sua mesa à beira-mar',
+    image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1600&q=80',
+    gradient: 'from-cyan-950/90 via-teal-900/70 to-cyan-950/40',
+    accent: 'bg-amber-400 text-teal-950',
+  },
 ];
 
 export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
