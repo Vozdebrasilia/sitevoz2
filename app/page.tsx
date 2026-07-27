@@ -48,6 +48,10 @@ export default async function Home() {
 
         <MosaicHighlights posts={posts} />
 
+        <div className="mt-6 mb-2">
+          <PremiumBanner variant={3} />
+        </div>
+
         {/* Grid principal: categorias densas + sidebar */}
         <div className="max-w-[1400px] mx-auto px-4 py-10">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
