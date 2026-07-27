@@ -168,19 +168,23 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
               <>
                 <button
                   onClick={prevSlide}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all"
+                  aria-label="Slide anterior"
+                  className="absolute z-10 bottom-4 left-4 md:left-4 md:top-1/2 md:bottom-auto md:-translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
                 >
-                  <ChevronLeft className="w-6 h-6" />
+                  <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
 
                 <button
                   onClick={nextSlide}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white p-3 rounded-full transition-all"
+                  aria-label="Próximo slide"
+                  className="absolute z-10 bottom-4 right-4 md:right-4 md:top-1/2 md:bottom-auto md:-translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
                 >
-                  <ChevronRight className="w-6 h-6" />
+                  <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
 
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+
+                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:bottom-4 flex gap-2 z-10">
+
                   {heroNews.map((_, index) => (
                     <button
                       key={index}
