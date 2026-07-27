@@ -79,6 +79,21 @@ const ADS: Ad[] = [
     gradient: 'from-cyan-950/90 via-teal-900/70 to-cyan-950/40',
     accent: 'bg-amber-400 text-teal-950',
   },
+  {
+    href: 'https://www.vozdebrasilia.com.br/noticia/ritz-suites-jatiuca-o-charme-pe-na-areia-mais-badalado-de-maceio',
+    eyebrow: 'Hotel Boutique · Maceió',
+    title: 'Ritz Suites Jatiúca',
+    subtitle: 'Pé na areia em Jatiúca · Suítes vista mar · Piscina rooftop · Café premiado',
+    address: 'Rua Engenheiro Mário de Gusmão, 1300 · Jatiúca · Maceió/AL',
+    site: 'https://www.hoteisritzalagoas.com.br/suites/',
+    siteLabel: 'Reservar no site · ver tarifas',
+    whatsapp: 'https://wa.me/558221226300?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20cota%C3%A7%C3%A3o%20no%20Ritz%20Suites%20Jati%C3%BAca%20com%20cupom%20VOZ2026.',
+    whatsappLabel: 'Reservas (82) 2122-6300',
+    cta: 'Reserve com cupom VOZ2026',
+    image: 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1600&q=80',
+    gradient: 'from-indigo-950/90 via-indigo-900/70 to-indigo-950/40',
+    accent: 'bg-amber-400 text-indigo-950',
+  },
 ];
 
 export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
@@ -162,3 +177,4 @@ export default function PremiumBanner({ variant = 0 }: { variant?: number }) {
     </div>
   );
 }
+
