@@ -48,6 +48,21 @@ const WANCHAKO: SidebarAd = {
   whatsappLabel: 'WhatsApp (82) 98889-9634',
 };
 
+const JANGA: SidebarAd = {
+  href: 'https://www.vozdebrasilia.com.br/noticia/restaurante-janga-praia-a-experiencia-de-frutos-do-mar-mais-desejada-de-maceio',
+  image: 'https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1200&q=80',
+  eyebrow: 'Frutos do Mar · Maceió',
+  eyebrowClass: 'text-cyan-300',
+  title: 'Janga Praia',
+  subtitle: '#2 de Maceió · Lagosta, camarão e risotos autorais',
+  address: 'Av. Silvio Carlos Viana, 1731 · Cruz das Almas · Maceió/AL',
+  site: 'https://linktr.ee/PedidosJanga',
+  siteLabel: 'Ver cardápio e reservar',
+  whatsapp: 'https://wa.me/558230283288?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20reservar%20mesa%20no%20Janga%20Praia.',
+  whatsappLabel: 'Reservas (82) 3028-3288',
+  stars: true,
+};
+
 const RITZ: SidebarAd = {
   href: 'https://www.vozdebrasilia.com.br/noticia/ritz-lagoa-da-anta-o-5-estrelas-mais-desejado-de-maceio',
   image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80',
@@ -148,6 +163,7 @@ export default function Sidebar() {
         </div>
       </div>
 
+      <AdCard ad={JANGA} />
       <AdCard ad={RITZ} />
     </div>
   );
