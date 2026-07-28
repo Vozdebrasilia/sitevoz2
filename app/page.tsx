@@ -23,7 +23,27 @@ export default async function Home() {
     return /maceio|alagoas|pajucara|ponta verde|praia do frances|maragogi|sao miguel dos milagres/.test(t);
   };
   const maceioPosts = posts.filter(isMaceio);
-  const heroPosts = (maceioPosts.length > 0 ? maceioPosts : posts).slice(0, 5);
+  const ritzSlide = {
+    id: 'ritz-plaza-mar-pajucara',
+    slug: 'ritz-plaza-mar-pajucara',
+    href: 'https://www.ritzhoteis.com.br/',
+    ctaLabel: 'Reservar no Ritz Plaza Mar',
+    title: { rendered: 'Ritz Plaza Mar: o pé na areia mais charmoso de Pajuçara' },
+    excerpt: {
+      rendered:
+        'Frente para o mar de Pajuçara, piscina com vista, restaurante e o melhor pôr do sol da orla de Maceió.',
+    },
+    content: { rendered: '' },
+    date: new Date().toISOString(),
+    published_at: new Date().toISOString(),
+    category: 'Turismo · Maceió',
+    categorySlug: 'turismo',
+    categoryColor: 'bg-amber-500',
+    featured_image:
+      'https://voz-central-ai.lovable.app/__l5e/assets-v1/29359ffd-d732-46f1-b10d-364b999c4c07/ritz-pajucara.jpg',
+  };
+
+  const heroPosts = [ritzSlide, ...maceioPosts.slice(0, 4)];
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' },
