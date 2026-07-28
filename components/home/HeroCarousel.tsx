@@ -25,6 +25,11 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
         setIsLoading(false);
       }
 
+      // Se a home ja enviou os posts (curadoria server-side), respeitar 100%
+      if (posts && posts.length > 0) {
+        return;
+      }
+
       // Try to fetch live news from Supabase
       if (supabase) {
         try {
@@ -155,10 +160,10 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
                   </div>
 
                   <Link
-                    href={`/noticia/${currentNews.slug}`}
+                    href={currentNews.href || `/noticia/${currentNews.slug}`}
                     className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-lg hover:shadow-xl"
                   >
-                    Ler Matéria Completa
+                    {currentNews.ctaLabel || 'Ler Matéria Completa'}
                   </Link>
                 </div>
               </div>
