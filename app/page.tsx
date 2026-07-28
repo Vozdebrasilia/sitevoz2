@@ -15,6 +15,16 @@ export default async function Home() {
   const posts = await getPosts(150);
   const interviews = await getInterviewPosts(40);
 
+  const isMaceio = (p: any) => {
+    const t = `${p?.title?.rendered ?? ''} ${p?.excerpt?.rendered ?? ''} ${p?.content?.rendered ?? ''} ${p?.category ?? ''}`
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+    return /maceio|alagoas|pajucara|ponta verde|praia do frances|maragogi|sao miguel dos milagres/.test(t);
+  };
+  const maceioPosts = posts.filter(isMaceio);
+  const heroPosts = (maceioPosts.length > 0 ? maceioPosts : posts).slice(0, 5);
+
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' },
     { title: 'Distrito Federal', category: 'distrito-federal' },
@@ -35,7 +45,7 @@ export default async function Home() {
       <main className="pt-16">
         <TrendingBar posts={posts} />
 
-        <HeroCarousel posts={posts.slice(0, 5)} />
+        <HeroCarousel posts={heroPosts} />
 
         <MaceioShowcase />
 
