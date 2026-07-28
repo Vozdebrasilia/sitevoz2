@@ -65,7 +65,7 @@ const RESTAURANTES: Resto[] = [
     whatsapp:
       'https://wa.me/558230228700?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20Ritz%20Plaza%20Mar%20em%20Paju%C3%A7ara.',
     whatsappLabel: 'WhatsApp Ritz Plaza Mar',
-    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80',
+    image: 'https://voz-central-ai.lovable.app/__l5e/assets-v1/29359ffd-d732-46f1-b10d-364b999c4c07/ritz-pajucara.jpg',
   },
 ];
 
