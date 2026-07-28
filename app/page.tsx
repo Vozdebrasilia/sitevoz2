@@ -9,6 +9,7 @@ import { getPosts, getInterviewPosts } from "../lib/wordpress";
 import PremiumBanner from '@/components/common/PremiumBanner';
 import TrendingBar from '@/components/common/TrendingBar';
 import MosaicHighlights from '@/components/common/MosaicHighlights';
+import MaceioShowcase from '@/components/home/MaceioShowcase';
 
 export default async function Home() {
   const posts = await getPosts(150);
@@ -35,6 +36,8 @@ export default async function Home() {
         <TrendingBar posts={posts} />
 
         <HeroCarousel posts={posts.slice(0, 5)} />
+
+        <MaceioShowcase />
 
         <div className="mt-4">
           <PremiumBanner variant={0} />
