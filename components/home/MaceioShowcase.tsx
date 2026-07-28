@@ -55,6 +55,18 @@ const RESTAURANTES: Resto[] = [
     siteLabel: 'Day use e reservas',
     image: 'https://images.unsplash.com/photo-1533777857889-4be7c70b33f7?w=1200&q=80',
   },
+  {
+    name: 'Ritz Plaza Mar',
+    tag: 'Hotel · Praia de Pajuçara',
+    desc: 'Frente para a praia de Pajuçara, piscina, restaurante e a melhor vista do pôr do sol da orla.',
+    address: 'Av. Dr. Antônio Gouveia, 1141 · Pajuçara · Maceió/AL',
+    site: 'https://www.ritzhoteis.com.br/',
+    siteLabel: 'Reservar diária',
+    whatsapp:
+      'https://wa.me/558230228700?text=Ol%C3%A1%21%20Vim%20pelo%20Voz%20de%20Bras%C3%ADlia%20e%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20o%20Ritz%20Plaza%20Mar%20em%20Paju%C3%A7ara.',
+    whatsappLabel: 'WhatsApp Ritz Plaza Mar',
+    image: 'https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=1200&q=80',
+  },
 ];
 
 export default function MaceioShowcase() {
@@ -92,7 +104,7 @@ export default function MaceioShowcase() {
             <span className="text-cyan-200 text-sm">Seleção Voz de Brasília</span>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5">
             {RESTAURANTES.map((r) => (
               <article
                 key={r.name}
