@@ -19,6 +19,7 @@ export default function Header() {
 
   const mainMenuItems = [
     { label: 'Início', href: '/' },
+    { label: 'Vídeos Virais', href: '/videos' },
     { label: 'Política', href: '/categoria/politica' },
     { label: 'Distrito Federal', href: '/categoria/distrito-federal' },
     { label: 'Turismo', href: '/categoria/turismo' },
