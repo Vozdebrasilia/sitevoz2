@@ -10,47 +10,40 @@ import PremiumBanner from '@/components/common/PremiumBanner';
 import TrendingBar from '@/components/common/TrendingBar';
 import MosaicHighlights from '@/components/common/MosaicHighlights';
 import MaceioShowcase from '@/components/home/MaceioShowcase';
+import ViralStrip from '@/components/home/ViralStrip';
+
+export const revalidate = 300;
 
 export default async function Home() {
   const posts = await getPosts(150);
   const interviews = await getInterviewPosts(40);
 
-  const isMaceio = (p: any) => {
-    const t = `${p?.title?.rendered ?? ''} ${p?.excerpt?.rendered ?? ''} ${p?.content?.rendered ?? ''} ${p?.category ?? ''}`
+  const norm = (p: any) =>
+    `${p?.title?.rendered ?? ''} ${p?.excerpt?.rendered ?? ''} ${p?.category ?? ''} ${p?.categorySlug ?? ''}`
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase();
-    return /maceio|alagoas|pajucara|ponta verde|praia do frances|maragogi|sao miguel dos milagres/.test(t);
-  };
-  const maceioPosts = posts.filter(isMaceio);
-  const ritzSlide = {
-    id: 'ritz-plaza-mar-pajucara',
-    slug: 'ritz-plaza-mar-pajucara',
-    href: 'https://www.ritzhoteis.com.br/',
-    ctaLabel: 'Reservar no Ritz Plaza Mar',
-    title: { rendered: 'Ritz Plaza Mar: o pé na areia mais charmoso de Pajuçara' },
-    excerpt: {
-      rendered:
-        'Frente para o mar de Pajuçara, piscina com vista, restaurante e o melhor pôr do sol da orla de Maceió.',
-    },
-    content: { rendered: '' },
-    date: new Date().toISOString(),
-    published_at: new Date().toISOString(),
-    category: 'Turismo · Maceió',
-    categorySlug: 'turismo',
-    categoryColor: 'bg-amber-500',
-    featured_image:
-      'https://voz-central-ai.lovable.app/__l5e/assets-v1/29359ffd-d732-46f1-b10d-364b999c4c07/ritz-pajucara.jpg',
-  };
 
-  const heroPosts = [ritzSlide, ...maceioPosts.slice(0, 4)];
+  const isMaceio = (p: any) =>
+    /maceio|alagoas|pajucara|ponta verde|praia do frances|maragogi|sao miguel dos milagres/.test(norm(p));
+
+  const isPolitica = (p: any) =>
+    p?.categorySlug === 'politica' ||
+    /politica|lula|celina|tarcisio|bolsonaro|caiado|zema|ciro gomes|ratinho|congresso|presidenciav|eleicoes 2026|planalto|buriti/.test(
+      norm(p),
+    );
+
+  const politicaPosts = posts.filter(isPolitica);
+  const maceioPosts = posts.filter(isMaceio);
+
+  const heroPosts = (politicaPosts.length >= 3 ? politicaPosts : posts).slice(0, 6);
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' },
     { title: 'Distrito Federal', category: 'distrito-federal' },
+    { title: 'Economia', category: 'economia' },
     { title: 'Turismo', category: 'turismo' },
     { title: 'Gastronomia', category: 'gastronomia' },
-    { title: 'Economia', category: 'economia' },
     { title: 'Saúde', category: 'saude' },
     { title: 'Tecnologia', category: 'tecnologia' },
     { title: 'Esportes', category: 'esportes' },
@@ -67,17 +60,17 @@ export default async function Home() {
 
         <HeroCarousel posts={heroPosts} />
 
-        <MaceioShowcase />
+        <div className="bg-white pt-8">
+          <div className="max-w-[1400px] mx-auto px-4">
+            <LatestNews posts={politicaPosts.length ? politicaPosts : posts} />
+          </div>
+        </div>
 
         <div className="mt-4">
           <PremiumBanner variant={0} />
         </div>
 
-        <div className="bg-white py-8">
-          <div className="max-w-[1400px] mx-auto px-4">
-            <LatestNews posts={posts} />
-          </div>
-        </div>
+        <ViralStrip />
 
         <MosaicHighlights posts={posts} />
 
@@ -86,7 +79,7 @@ export default async function Home() {
         </div>
 
         {/* Grid principal: categorias densas + sidebar */}
-        <div className="max-w-[1400px] mx-auto px-4 py-10">
+        <div className="max-w-[1400px] mx-auto px-4 py-8">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2 space-y-10">
               {categories.map((c) => (
@@ -101,7 +94,13 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="bg-gray-50 py-10">
+        <div className="mb-2">
+          <PremiumBanner variant={1} />
+        </div>
+
+        {maceioPosts.length > 0 && <MaceioShowcase />}
+
+        <div className="bg-gray-50 py-8">
           <div className="max-w-[1400px] mx-auto px-4">
             <InterviewsSection posts={interviews} />
           </div>
