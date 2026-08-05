@@ -11,6 +11,7 @@ import TrendingBar from '@/components/common/TrendingBar';
 import MosaicHighlights from '@/components/common/MosaicHighlights';
 import MaceioShowcase from '@/components/home/MaceioShowcase';
 import ViralStrip from '@/components/home/ViralStrip';
+import InstagramVideoBanner from '@/components/common/InstagramVideoBanner';
 
 export const revalidate = 300;
 
@@ -59,6 +60,8 @@ export default async function Home() {
         <TrendingBar posts={posts} />
 
         <HeroCarousel posts={heroPosts} />
+
+        <InstagramVideoBanner />
 
         <div className="bg-white pt-8">
           <div className="max-w-[1400px] mx-auto px-4">
