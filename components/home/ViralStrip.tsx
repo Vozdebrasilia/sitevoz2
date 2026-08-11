@@ -2,9 +2,14 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { Flame, Play, Instagram } from 'lucide-react';
+import { Flame, Play } from 'lucide-react';
 
 const FEED = 'https://voz-central-ai.lovable.app/api/public/videos-virais?limit=12';
+const IG_PERFIL = 'https://www.instagram.com/tvvozdebrasilia/';
+const linkIG = (u?: string) => {
+  const limpo = (u || '').trim().split(/\s+/)[0];
+  return limpo.startsWith('http') ? limpo : IG_PERFIL;
+};
 
 type Viral = {
   id: string;
@@ -16,7 +21,6 @@ type Viral = {
 
 export default function ViralStrip() {
   const [videos, setVideos] = useState<Viral[]>([]);
-  const [ativo, setAtivo] = useState<Viral | null>(null);
 
   useEffect(() => {
     fetch(FEED, { cache: 'no-store' })
@@ -49,10 +53,12 @@ export default function ViralStrip() {
 
         <div className="flex gap-4 overflow-x-auto pb-2 snap-x">
           {videos.map((v) => (
-            <button
+            <a
               key={v.id}
-              onClick={() => setAtivo(v)}
-              className="group shrink-0 w-[150px] snap-start text-left"
+              href={linkIG(v.instagram_permalink)}
+              target="_blank"
+              rel="noreferrer"
+              className="group shrink-0 w-[150px] snap-start text-left block"
             >
               <div className="relative aspect-[9/16] rounded-xl overflow-hidden bg-black">
                 {v.thumb_url ? (
@@ -72,47 +78,11 @@ export default function ViralStrip() {
               <p className="mt-2 text-xs font-semibold text-white/90 leading-snug line-clamp-2">
                 {v.titulo}
               </p>
-            </button>
+            </a>
           ))}
         </div>
       </div>
 
-      {ativo && (
-        <div
-          className="fixed inset-0 z-[90] bg-black/85 flex items-center justify-center p-4"
-          onClick={() => setAtivo(null)}
-        >
-          <div className="w-full max-w-[420px]" onClick={(e) => e.stopPropagation()}>
-            <video
-              src={ativo.video_url}
-              poster={ativo.thumb_url || undefined}
-              controls
-              autoPlay
-              playsInline
-              className="w-full rounded-xl bg-black aspect-[9/16] object-contain"
-            />
-            <div className="mt-3 text-white">
-              <h3 className="font-bold text-lg">{ativo.titulo}</h3>
-              <div className="flex gap-3 mt-4">
-                <a
-                  href={ativo.instagram_permalink || 'https://www.instagram.com/tvvozdebrasilia/'}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 bg-gradient-to-r from-pink-600 to-purple-600 px-4 py-2 rounded-lg text-sm font-semibold"
-                >
-                  <Instagram className="w-4 h-4" /> Seguir @tvvozdebrasilia
-                </a>
-                <button
-                  onClick={() => setAtivo(null)}
-                  className="px-4 py-2 rounded-lg text-sm font-semibold bg-white/15"
-                >
-                  Fechar
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }
