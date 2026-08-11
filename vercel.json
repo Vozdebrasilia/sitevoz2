@@ -3,6 +3,10 @@
   "trailingSlash": false,
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/inicio"
+    },
+    {
       "source": "/noticia/:slug",
       "destination": "/noticia?slug=:slug"
     },
