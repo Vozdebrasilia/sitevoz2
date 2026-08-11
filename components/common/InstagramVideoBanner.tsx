@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Instagram, Flame } from 'lucide-react';
 
 const FEED = 'https://voz-central-ai.lovable.app/api/public/videos-virais?limit=6';
-const INSTA = 'https://www.instagram.com/tvvozdebrasilia/';
+const INSTA = 'https://www.instagram.com/tvvozdebrasilia/reels/';
 
 type Viral = {
   id: string;
