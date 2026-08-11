@@ -10,6 +10,23 @@ interface LatestNewsProps {
   posts?: any[];
 }
 
+
+// Intercala as materias para nunca exibir duas fotos iguais lado a lado.
+function espacarPorImagem(lista: any[]): any[] {
+  const grupos = new Map<string, any[]>();
+  lista.forEach((p) => {
+    const k = String(p?.featured_image || p?.imagem_url || Math.random());
+    if (!grupos.has(k)) grupos.set(k, []);
+    grupos.get(k)!.push(p);
+  });
+  const filas = [...grupos.values()].sort((a, b) => b.length - a.length);
+  const out: any[] = [];
+  while (filas.some((f) => f.length)) {
+    for (const f of filas) if (f.length) out.push(f.shift());
+  }
+  return out;
+}
+
 export default function LatestNews({ posts = [] }: LatestNewsProps) {
   const [offset, setOffset] = useState(0);
   const [latestNews, setLatestNews] = useState<any[]>(posts);
@@ -127,7 +144,7 @@ export default function LatestNews({ posts = [] }: LatestNewsProps) {
             width: `${latestNews.length * 2 * 280}px`,
           }}
         >
-          {[...latestNews, ...latestNews].map((news, index) => (
+          {(() => { const ordenadas = espacarPorImagem(latestNews); return [...ordenadas, ...ordenadas]; })().map((news, index) => (
             <Link
               key={`${news.id}-${index}`}
               href={`/noticia/${news.slug}`}
