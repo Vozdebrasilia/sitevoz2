@@ -211,7 +211,7 @@ async function fetchLiveNews(limit = 12): Promise<any[] | null> {
    const res = await fetch(`${LOVABLE_FEED}?limit=${limit}`, {
       method: 'GET',
       headers: fetchHeaders,
-      next: { revalidate: 60 }
+      cache: 'no-store'
     } as any);
     if (!res.ok) return null;
     const data = await res.json();
@@ -267,8 +267,16 @@ export async function getInterviewPosts(limit = 5) {
 }
 
 export async function getPostBySlug(slug: string) {
-  const all = await getPosts(100);
-  return all.find((n: any) => n.slug === slug) || null;
+  // Busca um lote amplo e sem cache para que cards recém-publicados abram
+  // imediatamente com o texto completo entregue pelo feed editorial.
+  const all = await fetchLiveNews(200);
+  if (all && all.length > 0) {
+    const post = all.find((item: any) => item.slug === slug);
+    return post ? enrichPostsWithImages(post) : null;
+  }
+  const staticNews = loadStaticNews();
+  const fallback = staticNews.find((item: any) => item.slug === slug);
+  return fallback ? enrichPostsWithImages(normalizeLovablePost(fallback)) : null;
 }
 
 export async function getPostsByCategory(categoryId: number, limit = 4) {
