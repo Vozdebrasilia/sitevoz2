@@ -37,7 +37,15 @@ export default async function Home() {
   const politicaPosts = posts.filter(isPolitica);
   const maceioPosts = posts.filter(isMaceio);
 
-  const heroPosts = (politicaPosts.length >= 3 ? politicaPosts : posts).slice(0, 6);
+  // Fotos ruins/recortadas nao entram no destaque principal
+  const fotoRuim = (p: any) =>
+    !p?.featured_image ||
+    /celina/i.test(norm(p)) ||
+    /\.(gif)$/i.test(String(p.featured_image));
+
+  const heroPosts = (politicaPosts.length >= 3 ? politicaPosts : posts)
+    .filter((p: any) => !fotoRuim(p))
+    .slice(0, 6);
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' },
