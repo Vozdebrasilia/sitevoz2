@@ -6,10 +6,12 @@ import Footer from '@/components/layout/Footer';
 import { Play, Flame } from 'lucide-react';
 
 const FEED = 'https://voz-central-ai.lovable.app/api/public/videos-virais?limit=30';
-const IG_PERFIL = 'https://www.instagram.com/tvvozdebrasilia/';
+const IG_PERFIL = 'https://www.instagram.com/tvvozdebrasilia/reels/';
 const linkIG = (u?: string) => {
-  const limpo = (u || '').trim().split(/\s+/)[0];
-  return limpo.startsWith('http') ? limpo : IG_PERFIL;
+  const limpo = ((u || '').trim().split(/\s+/)[0] || '').replace(/[),]+$/, '');
+  return /^https:\/\/(www\.)?instagram\.com\/(reel|p)\/[A-Za-z0-9_-]+\/?$/i.test(limpo)
+    ? limpo
+    : IG_PERFIL;
 };
 
 type Viral = {
