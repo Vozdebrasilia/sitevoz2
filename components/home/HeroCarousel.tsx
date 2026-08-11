@@ -128,13 +128,19 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
           onMouseLeave={() => setIsPaused(false)}
         >
           <div className="relative h-[500px] md:h-[600px]">
-            <div
-              className="absolute inset-0 bg-cover bg-center transition-all duration-700"
-              style={{
-                backgroundImage: `url(${currentNews.featured_image})`,
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+            <div className="absolute inset-0 overflow-hidden">
+              {/* fundo desfocado evita barras e mantem a foto inteira em foco */}
+              <div
+                className="absolute inset-0 bg-cover bg-center scale-110 blur-2xl opacity-60"
+                style={{ backgroundImage: `url(${currentNews.featured_image})` }}
+              />
+              <img
+                src={currentNews.featured_image}
+                alt=""
+                aria-hidden="true"
+                className="absolute inset-0 w-full h-full object-cover object-[center_20%] transition-all duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-transparent" />
             </div>
 
             <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
