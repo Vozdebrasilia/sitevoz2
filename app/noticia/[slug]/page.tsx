@@ -19,6 +19,35 @@ export async function generateStaticParams() {
   }
 }
 
+export async function generateMetadata({ params }: { params: { slug: string } }) {
+  const post = await getPostBySlug(params.slug);
+  if (!post) return { title: 'Notícia não encontrada — TV Voz de Brasília' };
+  const titulo = (post.title?.rendered || '').replace(/<[^>]+>/g, '');
+  const bruto = (post.excerpt?.rendered || post.content?.rendered || '').replace(/<[^>]+>/g, '').trim();
+  const descricao = bruto.slice(0, 155);
+  const imagem = post._embedded?.['wp:featuredmedia']?.[0]?.source_url || '/og-image.jpg';
+  const url = `https://www.vozdebrasilia.com.br/noticia/${params.slug}`;
+  return {
+    title: `${titulo} — TV Voz de Brasília`,
+    description: descricao,
+    alternates: { canonical: url },
+    openGraph: {
+      title: titulo,
+      description: descricao,
+      url,
+      type: 'article',
+      images: [{ url: imagem }],
+      publishedTime: post.date,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: titulo,
+      description: descricao,
+      images: [imagem],
+    },
+  };
+}
+
 export default async function NoticiaPage({
   params,
 }: {
@@ -65,8 +94,29 @@ export default async function NoticiaPage({
   );
   const shareText = encodeURIComponent(titulo);
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'NewsArticle',
+    headline: titulo,
+    image: imagem ? [imagem] : undefined,
+    datePublished: post.date,
+    dateModified: post.modified || post.date,
+    author: [{ '@type': 'Person', name: autor }],
+    publisher: {
+      '@type': 'Organization',
+      name: 'TV Voz de Brasília',
+      logo: { '@type': 'ImageObject', url: 'https://www.vozdebrasilia.com.br/logo.png' },
+    },
+    mainEntityOfPage: 'https://www.vozdebrasilia.com.br/noticia/' + post.slug,
+    articleSection: categoria,
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Header />
 
       <main className="pt-24 pb-12">
