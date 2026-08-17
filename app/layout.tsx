@@ -23,11 +23,11 @@ export const metadata: Metadata = {
   authors: [{ name: 'TV Voz de Brasília' }],
   creator: 'TV Voz de Brasília',
   publisher: 'TV Voz de Brasília',
-  metadataBase: new URL('https://tvvozdebrasilia.com.br'),
+  metadataBase: new URL('https://www.vozdebrasilia.com.br'),
   openGraph: {
     title: 'TV Voz de Brasília - Portal de Notícias do Distrito Federal',
     description: 'O portal de notícias mais completo do Distrito Federal. Informação de qualidade sobre Brasília e o Brasil.',
-    url: 'https://tvvozdebrasilia.com.br',
+    url: 'https://www.vozdebrasilia.com.br',
     siteName: 'TV Voz de Brasília',
     locale: 'pt_BR',
     type: 'website',
@@ -63,6 +63,7 @@ export const metadata: Metadata = {
     shortcut: '/favicon-16x16.png',
     apple: '/apple-touch-icon.png',
   },
+  alternates: { canonical: 'https://www.vozdebrasilia.com.br' },
   manifest: '/site.webmanifest',
 };
 
@@ -79,6 +80,35 @@ export default function RootLayout({
         <meta name="referrer" content="no-referrer" />
         <link rel="preconnect" href="https://images.pexels.com" />
         <link rel="dns-prefetch" href="https://images.pexels.com" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'NewsMediaOrganization',
+              name: 'TV Voz de Brasília',
+              url: 'https://www.vozdebrasilia.com.br',
+              logo: 'https://www.vozdebrasilia.com.br/logo.png',
+              sameAs: ['https://www.instagram.com/tvvozdebrasilia'],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'WebSite',
+              name: 'TV Voz de Brasília',
+              url: 'https://www.vozdebrasilia.com.br',
+              potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://www.vozdebrasilia.com.br/?s={search_term_string}',
+                'query-input': 'required name=search_term_string',
+              },
+            }),
+          }}
+        />
       </head>
       <body className={inter.className}>
         <Script
