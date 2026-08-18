@@ -129,7 +129,7 @@ export default async function NoticiaPage({
                   <img
                     src={imagem}
                     alt={titulo}
-                    className="w-full h-96 object-cover"
+                    className="w-full h-96 object-cover object-[50%_22%]"
                   />
                 )}
 
@@ -264,7 +264,7 @@ export default async function NoticiaPage({
                               <img
                                 src={rImagem}
                                 alt={rTitulo}
-                                className="w-20 h-14 object-cover rounded-lg flex-shrink-0"
+                                className="w-20 h-14 object-cover object-[50%_22%] rounded-lg flex-shrink-0"
                               />
                             )}
 
