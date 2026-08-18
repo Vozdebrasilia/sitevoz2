@@ -71,7 +71,7 @@ export default function CategorySection({ title = 'Política', category = 'polit
           >
             <div className="relative h-40 overflow-hidden">
               <div
-                className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-full bg-cover bg-[position:50%_22%] transition-transform duration-500 group-hover:scale-110"
                 style={{ backgroundImage: `url(${item.featured_image})` }}
               />
             </div>
