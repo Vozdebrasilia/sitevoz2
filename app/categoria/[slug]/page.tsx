@@ -116,7 +116,7 @@ export default async function CategoriaPage({ params }: { params: { slug: string
                         <img
                           src={imagem}
                           alt={titulo}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-full object-cover object-[50%_22%] transition-transform duration-500 group-hover:scale-110"
                         />
                       )}
                     </div>
