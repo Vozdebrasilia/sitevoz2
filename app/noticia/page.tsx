@@ -132,7 +132,7 @@ export default function DynamicNoticiaPage() {
                   <img
                     src={imagem}
                     alt={titulo}
-                    className="w-full h-96 object-cover"
+                    className="w-full h-96 object-cover object-[50%_22%]"
                   />
                 )}
 
@@ -245,7 +245,7 @@ export default function DynamicNoticiaPage() {
                               <img
                                 src={r.featured_image}
                                 alt={r.title}
-                                className="w-20 h-14 object-cover rounded-lg flex-shrink-0"
+                                className="w-20 h-14 object-cover object-[50%_22%] rounded-lg flex-shrink-0"
                               />
                             )}
 
