@@ -152,7 +152,7 @@ export default function LatestNews({ posts = [] }: LatestNewsProps) {
             >
               <div className="relative h-40 overflow-hidden">
                 <div
-                  className="w-full h-full bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                  className="w-full h-full bg-cover bg-[position:50%_22%] transition-transform duration-300 group-hover:scale-110"
                   style={{ backgroundImage: `url(${news.featured_image})` }}
                 />
                 <span className={`absolute top-2 left-2 ${news.categoryColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
