@@ -12,6 +12,7 @@ import MosaicHighlights from '@/components/common/MosaicHighlights';
 import MaceioShowcase from '@/components/home/MaceioShowcase';
 import ViralStrip from '@/components/home/ViralStrip';
 import InstagramVideoBanner from '@/components/common/InstagramVideoBanner';
+import SponsorBanner from '@/components/common/SponsorBanner';
 
 export const revalidate = 300;
 
@@ -67,7 +68,14 @@ export default async function Home() {
       <main className="pt-16">
         <TrendingBar posts={posts} />
 
-        <HeroCarousel posts={heroPosts} />
+        <div className="pt-4 space-y-4">
+          <SponsorBanner sponsor="petrobras" />
+          <SponsorBanner sponsor="snaider" />
+        </div>
+
+        <div className="mt-4">
+          <HeroCarousel posts={heroPosts} />
+        </div>
 
         <InstagramVideoBanner />
 
@@ -81,12 +89,20 @@ export default async function Home() {
           <PremiumBanner variant={0} />
         </div>
 
+        <div className="mt-6">
+          <SponsorBanner sponsor="visao" />
+        </div>
+
         <ViralStrip />
 
         <MosaicHighlights posts={posts} />
 
         <div className="mt-6 mb-2">
           <PremiumBanner variant={3} />
+        </div>
+
+        <div className="mt-4 mb-2">
+          <SponsorBanner sponsor="lunardi" />
         </div>
 
         {/* Grid principal: categorias densas + sidebar */}
@@ -109,12 +125,20 @@ export default async function Home() {
           <PremiumBanner variant={1} />
         </div>
 
+        <div className="mt-4 mb-2">
+          <SponsorBanner sponsor="coreto" />
+        </div>
+
         {maceioPosts.length > 0 && <MaceioShowcase />}
 
         <div className="bg-gray-50 py-8">
           <div className="max-w-[1400px] mx-auto px-4">
             <InterviewsSection posts={interviews} />
           </div>
+        </div>
+
+        <div className="mt-4 mb-2">
+          <SponsorBanner sponsor="kumon" />
         </div>
 
         <div className="mt-2 mb-10">
