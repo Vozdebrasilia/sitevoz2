@@ -211,7 +211,7 @@ async function fetchLiveNews(limit = 12): Promise<any[] | null> {
    const res = await fetch(`${LOVABLE_FEED}?limit=${limit}`, {
       method: 'GET',
       headers: fetchHeaders,
-      next: { revalidate: 300 }
+      cache: 'no-store'
     } as any);
     if (!res.ok) return null;
     const data = await res.json();
