@@ -37,7 +37,7 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
             .from('news')
             .select('*')
             .order('published_at', { ascending: false })
-            .limit(5);
+            .limit(8);
 
           if (!error && data && data.length > 0 && active) {
             const formatted = data.map((item: any) => ({
@@ -62,7 +62,7 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
               }
             });
 
-            setHeroNews(merged.slice(0, 5));
+            setHeroNews(merged.slice(0, 8));
             setIsLoading(false);
             return;
           }
@@ -74,7 +74,7 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
       // Fallback if Supabase not configured or returns empty
       if ((!posts || posts.length === 0) && active) {
         try {
-          const data = await getHeroNews(5);
+          const data = await getHeroNews(8);
           setHeroNews(data);
         } catch (err) {
           console.error('Error fetching hero news:', err);
