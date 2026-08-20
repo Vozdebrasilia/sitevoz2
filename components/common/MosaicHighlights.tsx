@@ -34,22 +34,23 @@ export default function MosaicHighlights({ posts = [] as any[] }) {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
           <Link
             href={`/noticia/${big.slug}`}
-            className="group relative md:row-span-2 md:col-span-2 rounded-2xl overflow-hidden bg-gray-900 min-h-[280px] md:min-h-[520px] shadow-lg"
+            className="group md:row-span-2 md:col-span-2 rounded-2xl overflow-hidden bg-gray-900 shadow-lg flex flex-col"
           >
-            <img
-              src={big.featured_image || big._embedded?.['wp:featuredmedia']?.[0]?.source_url}
-              alt={stripHtml(big.title?.rendered || big.title)}
-              className="absolute inset-0 w-full h-full object-cover object-[50%_22%] transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-              <span className="inline-block bg-green-600 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full mb-3">
+            <div className="relative h-[220px] md:h-[380px] overflow-hidden bg-gray-900">
+              <img
+                src={big.featured_image || big._embedded?.['wp:featuredmedia']?.[0]?.source_url}
+                alt={stripHtml(big.title?.rendered || big.title)}
+                className="absolute inset-0 w-full h-full object-cover object-[50%_18%] transition-transform duration-700 group-hover:scale-105"
+              />
+              <span className="absolute top-3 left-3 bg-green-600 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full">
                 {big.category || 'Destaque'}
               </span>
-              <h3 className="font-black text-xl md:text-3xl leading-tight mb-2 drop-shadow-lg">
+            </div>
+            <div className="p-5 md:p-6 text-white">
+              <h3 className="font-bold text-lg md:text-2xl leading-snug line-clamp-2">
                 {stripHtml(big.title?.rendered || big.title)}
               </h3>
-              <p className="hidden md:block text-sm opacity-90 line-clamp-2 max-w-2xl">
+              <p className="hidden md:block mt-2 text-sm text-gray-300 line-clamp-2 max-w-2xl">
                 {stripHtml(big.excerpt?.rendered || big.excerpt)}
               </p>
             </div>
@@ -65,7 +66,7 @@ export default function MosaicHighlights({ posts = [] as any[] }) {
                 <img
                   src={p.featured_image || p._embedded?.['wp:featuredmedia']?.[0]?.source_url}
                   alt={stripHtml(p.title?.rendered || p.title)}
-                  className="absolute inset-0 w-full h-full object-cover object-[50%_22%] transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover object-[50%_18%] transition-transform duration-700 group-hover:scale-105"
                 />
                 <span className="absolute top-2 left-2 bg-black/70 backdrop-blur text-white text-[10px] font-black uppercase tracking-wider px-2 py-1 rounded">
                   {p.category || 'Notícia'}
