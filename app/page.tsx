@@ -31,7 +31,7 @@ export default async function Home() {
 
   const isPolitica = (p: any) =>
     p?.categorySlug === 'politica' ||
-    /politica|lula|celina|tarcisio|bolsonaro|caiado|zema|ciro gomes|ratinho|congresso|presidenciav|eleicoes 2026|planalto|buriti/.test(
+    /politica|lula|celina|hermeto|paula belmonte|julio cesar|flavio bolsonaro|leila|tarcisio|bolsonaro|caiado|zema|ciro gomes|ratinho|congresso|presidenciav|eleicoes 2026|planalto|buriti/.test(
       norm(p),
     );
 
