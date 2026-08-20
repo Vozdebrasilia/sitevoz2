@@ -40,13 +40,23 @@ export default async function Home() {
 
   // Fotos ruins/recortadas nao entram no destaque principal
   const fotoRuim = (p: any) =>
-    !p?.featured_image ||
-    /celina/i.test(norm(p)) ||
-    /\.(gif)$/i.test(String(p.featured_image));
+    !p?.featured_image || /\.(gif)$/i.test(String(p.featured_image));
 
-  const heroPosts = (politicaPosts.length >= 3 ? politicaPosts : posts)
-    .filter((p: any) => !fotoRuim(p))
-    .slice(0, 6);
+  // Personagens obrigatorios: garantem uma manchete de cada no topo da capa.
+  const obrigatorios = ['celina', 'hermeto', 'paula belmonte', 'julio cesar', 'lula', 'flavio bolsonaro', 'leila'];
+
+  const base = (politicaPosts.length >= 3 ? politicaPosts : posts).filter((p: any) => !fotoRuim(p));
+
+  const destaques: any[] = [];
+  obrigatorios.forEach((nome) => {
+    const achado = base.find((p: any) => norm(p).includes(nome) && !destaques.includes(p));
+    if (achado) destaques.push(achado);
+  });
+  base.forEach((p: any) => {
+    if (!destaques.includes(p)) destaques.push(p);
+  });
+
+  const heroPosts = destaques.slice(0, 6);
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' },
