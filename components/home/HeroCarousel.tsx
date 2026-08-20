@@ -127,11 +127,11 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <div className="relative h-[500px] md:h-[600px]">
-            <div className="absolute inset-0 overflow-hidden">
-              {/* fundo desfocado evita barras e mantem a foto inteira em foco */}
+          <div className="relative">
+            {/* Foto sem texto por cima: nunca cobre o rosto */}
+            <div className="relative h-[280px] md:h-[440px] overflow-hidden bg-gray-900">
               <div
-                className="absolute inset-0 bg-cover bg-center scale-125 blur-2xl opacity-70"
+                className="absolute inset-0 bg-cover bg-center scale-125 blur-2xl opacity-60"
                 style={{ backgroundImage: `url(${currentNews.featured_image})` }}
               />
               <img
@@ -140,34 +140,33 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
                 aria-hidden="true"
                 className="absolute inset-0 w-full h-full object-contain object-center transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-transparent" />
+              <span className={`absolute top-4 left-4 ${currentNews.categoryColor} text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg`}>
+                {currentNews.category}
+              </span>
             </div>
 
-            <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-12">
+            {/* Manchete em faixa propria, curta e legivel */}
+            <div className="bg-gray-950 px-6 py-6 md:px-10 md:py-8">
               <div className="max-w-4xl">
-                <span className={`inline-block ${currentNews.categoryColor} text-white px-4 py-1.5 rounded-full text-sm font-semibold mb-4`}>
-                  {currentNews.category}
-                </span>
-
-                <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight line-clamp-2">
+                <h1 className="text-xl md:text-3xl font-bold text-white leading-snug line-clamp-2">
                   {typeof currentNews.title === 'object' && currentNews.title !== null ? (currentNews.title.rendered || '').replace(/<[^>]+>/g, '') : currentNews.title}
                 </h1>
 
-                <p className="text-lg md:text-xl text-gray-200 mb-6 leading-relaxed line-clamp-2">
+                <p className="mt-2 text-sm md:text-base text-gray-300 leading-relaxed line-clamp-2">
                   {typeof currentNews.excerpt === 'object' && currentNews.excerpt !== null ? (currentNews.excerpt.rendered || '').replace(/<[^>]+>/g, '') : currentNews.excerpt}
                 </p>
 
-                <div className="flex items-center gap-6">
-                  <div className="flex items-center gap-2 text-gray-300">
+                <div className="mt-4 flex flex-wrap items-center gap-4">
+                  <div className="flex items-center gap-2 text-gray-400">
                     <Clock className="w-4 h-4" />
-                    <span className="text-sm">
+                    <span className="text-xs">
                       {new Date(currentNews.published_at || currentNews.created_at || currentNews.date).toLocaleDateString('pt-BR')}
                     </span>
                   </div>
 
                   <Link
                     href={currentNews.href || `/noticia/${currentNews.slug}`}
-                    className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-lg font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-lg hover:shadow-xl"
+                    className="bg-gradient-to-r from-green-600 to-green-700 text-white px-6 py-2.5 rounded-lg text-sm font-semibold hover:from-green-700 hover:to-green-800 transition-all shadow-lg"
                   >
                     {currentNews.ctaLabel || 'Ler Matéria Completa'}
                   </Link>
@@ -180,7 +179,7 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
                 <button
                   onClick={prevSlide}
                   aria-label="Slide anterior"
-                  className="absolute z-10 bottom-4 left-4 md:left-4 md:top-1/2 md:bottom-auto md:-translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
+                  className="absolute z-10 top-[120px] left-4 md:left-4 md:top-[200px] md:bottom-auto bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
                 >
                   <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
@@ -188,13 +187,13 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
                 <button
                   onClick={nextSlide}
                   aria-label="Próximo slide"
-                  className="absolute z-10 bottom-4 right-4 md:right-4 md:top-1/2 md:bottom-auto md:-translate-y-1/2 bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
+                  className="absolute z-10 top-[120px] right-4 md:right-4 md:top-[200px] md:bottom-auto bg-black/40 hover:bg-black/60 backdrop-blur-sm text-white p-2 md:p-3 rounded-full transition-all"
                 >
                   <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                 </button>
 
 
-                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 md:bottom-4 flex gap-2 z-10">
+                <div className="absolute top-[248px] md:top-[400px] left-1/2 -translate-x-1/2 flex gap-2 z-10">
 
                   {heroNews.map((_, index) => (
                     <button
