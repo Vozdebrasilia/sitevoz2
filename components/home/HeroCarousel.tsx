@@ -118,6 +118,15 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
   if (heroNews.length === 0) return null;
 
   const currentNews = heroNews[currentSlide];
+  const currentTitle = String(
+    typeof currentNews.title === 'object' && currentNews.title !== null
+      ? currentNews.title.rendered || ''
+      : currentNews.title || '',
+  )
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+  const enlargeCampaignPortrait = currentTitle.includes('celina') || currentTitle.includes('paula belmonte');
 
   return (
     <div className="bg-gradient-to-b from-gray-900 to-gray-800">
@@ -138,7 +147,9 @@ export default function HeroCarousel({ posts = [] }: HeroCarouselProps) {
                 src={currentNews.featured_image}
                 alt=""
                 aria-hidden="true"
-                className="absolute inset-0 w-full h-full object-contain object-center transition-all duration-700"
+                className={`absolute inset-0 w-full h-full object-contain object-center transition-all duration-700 ${
+                  enlargeCampaignPortrait ? 'scale-110' : ''
+                }`}
               />
               <span className={`absolute top-4 left-4 ${currentNews.categoryColor} text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg`}>
                 {currentNews.category}
