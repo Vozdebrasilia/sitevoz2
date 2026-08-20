@@ -43,7 +43,7 @@ export default async function Home() {
     !p?.featured_image || /\.(gif)$/i.test(String(p.featured_image));
 
   // Personagens obrigatorios: garantem uma manchete de cada no topo da capa.
-  const obrigatorios = ['celina', 'hermeto', 'paula belmonte', 'julio cesar', 'lula', 'flavio bolsonaro', 'leila'];
+  const obrigatorios = ['celina', 'paula belmonte', 'hermeto', 'julio cesar', 'lula', 'flavio bolsonaro', 'leila'];
 
   const base = (politicaPosts.length >= 3 ? politicaPosts : posts).filter((p: any) => !fotoRuim(p));
 
@@ -56,7 +56,9 @@ export default async function Home() {
     if (!destaques.includes(p)) destaques.push(p);
   });
 
-  const heroPosts = destaques.slice(0, 6);
+  // Oito slides: os sete personagens obrigatorios mais uma manchete relevante.
+  // Hermeto usa a materia da inauguracao do comite quando ela estiver no feed.
+  const heroPosts = destaques.slice(0, 8);
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' },
