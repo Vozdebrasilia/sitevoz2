@@ -14,7 +14,7 @@ import ViralStrip from '@/components/home/ViralStrip';
 import InstagramVideoBanner from '@/components/common/InstagramVideoBanner';
 import SponsorBanner from '@/components/common/SponsorBanner';
 
-export const revalidate = 300;
+export const revalidate = 60;
 
 export default async function Home() {
   const posts = await getPosts(150);
