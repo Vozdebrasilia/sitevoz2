@@ -24,15 +24,15 @@ export default async function Home() {
   const roneyPost = {
     id: 'roney-nemer-2026-09-01',
     slug: 'roney-nemer-volta-disputa-distrital-experiencia-propostas-brasilia',
-    title: { rendered: 'Rôney Nemer volta à disputa distrital com experiência e propostas para Brasília' },
-    excerpt: { rendered: 'Candidato a deputado distrital pelo PP, número 11111, Rôney Nemer retorna à disputa eleitoral no Distrito Federal.' },
-    date: '2026-09-01T20:54:00-03:00',
-    published_at: '2026-09-01T20:54:00-03:00',
-    created_at: '2026-09-01T20:54:00-03:00',
+    title: { rendered: 'Rôney Nemer: experiência e diálogo pelo Distrito Federal' },
+    excerpt: { rendered: 'Candidato a deputado distrital pelo PP, número 11111, Rôney Nemer retorna à disputa eleitoral com uma trajetória construída na administração pública, no Legislativo e nas comunidades de Brasília.' },
+    date: '2026-09-02T07:45:00-03:00',
+    published_at: '2026-09-02T07:45:00-03:00',
+    created_at: '2026-09-02T07:45:00-03:00',
     category: 'Política',
     categorySlug: 'politica',
     categoryColor: 'bg-red-600',
-    featured_image: 'https://www.tribunapr.com.br/hermes-media/eleicoes/2026/candidatos/df/70002538503.jpg',
+    featured_image: 'https://dados.agenciasertao.com/json/v1/eleicoes/2026/fotos/70002538503.jpg',
     href: '/noticia/roney-nemer-volta-disputa-distrital-experiencia-propostas-brasilia',
   };
 
