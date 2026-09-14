@@ -50,49 +50,21 @@ export default async function Home() {
   const isMaceio = (p: any) =>
     /maceio|alagoas|pajucara|ponta verde|praia do frances|maragogi|sao miguel dos milagres/.test(norm(p));
 
-  const isPolitica = (p: any) =>
-    p?.categorySlug === 'politica' ||
-    /politica|lula|celina|michelle bolsonaro|julio cesar|flavio bolsonaro|leila|roney nemer|augusto cury|bolsonaro|caiado|zema|congresso|presidencia|eleicoes 2026|planalto|buriti/.test(
-      norm(p),
-    );
-
-  const politicaPosts = posts.filter(isPolitica);
   const maceioPosts = posts.filter(isMaceio);
   const fotoRuim = (p: any) => !p?.featured_image || /\.(gif)$/i.test(String(p.featured_image));
 
-  
-  // Ordem editorial da capa: uma matéria de cada personagem estratégico.
-  // Augusto Cury fica em superdestaque próprio logo acima deste carrossel.
-  const obrigatorios = [
-    'julio cesar',
-    'roney nemer',
-    'celina',
-    'leila',
-    'michelle bolsonaro',
-    'lula',
-    'flavio bolsonaro',
-  ];
+  // A capa agora é 100% orientada pela atualidade: as matérias antigas continuam
+  // disponíveis nas seções abaixo, mas não ocupam mais o carrossel principal.
+  const recentes = posts
+    .filter((p: any) => !fotoRuim(p))
+    .sort((a: any, b: any) => {
+      const da = new Date(a?.published_at || a?.created_at || a?.date || 0).getTime();
+      const db = new Date(b?.published_at || b?.created_at || b?.date || 0).getTime();
+      return db - da;
+    });
 
-  const base = (politicaPosts.length >= 3 ? politicaPosts : posts).filter((p: any) => !fotoRuim(p));
-
-  const destaques: any[] = [];
-
-  obrigatorios.forEach((termo) => {
-    const achado = base.find((p: any) => norm(p).includes(termo) && !destaques.includes(p));
-    if (achado) destaques.push(achado);
-  });
-
-  const recentes = [...base].sort((a: any, b: any) => {
-    const da = new Date(a?.published_at || a?.created_at || a?.date || 0).getTime();
-    const db = new Date(b?.published_at || b?.created_at || b?.date || 0).getTime();
-    return db - da;
-  });
-
-  recentes.forEach((p: any) => {
-    if (!destaques.includes(p)) destaques.push(p);
-  });
-
-  const heroPosts = destaques.slice(0, 8);
+  const heroPosts = recentes.slice(0, 8);
+  const topStory = heroPosts[0];
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' }, { title: 'Distrito Federal', category: 'distrito-federal' },
@@ -109,15 +81,17 @@ export default async function Home() {
         <TrendingBar posts={posts} />
         <div className="pt-4 space-y-4">
           <SponsorBanner sponsor="petrobras" />
-          <div className="max-w-[1400px] mx-auto px-4">
-            <TopStoryBanner
-              href="/noticia/analise-profunda-paulo-fayad-augusto-cury-sera-o-proximo-presidente-do-brasil-e"
-              kicker="ANÁLISE DE PAULO FAYAD • VOZ DE BRASÍLIA VIU ANTES"
-              title="Augusto Cury cresce — e a aposta registrada pela Voz de Brasília ganha força"
-              excerpt="A Voz de Brasília acompanha Cury desde quando aparecia com apenas 2% nas pesquisas. Em 31 de agosto, Paulo Fayad registrou de forma explícita sua aposta: Cury pode romper a polarização e vencer a eleição no primeiro turno. Agora, com levantamentos colocando o candidato entre 8% e 11%, revisitamos a tese e acompanhamos os próximos movimentos da curva."
-              image="https://s2-g1.glbimg.com/4osiPZSqBjvajoKfPeoB7JFXcjs=/1315x0/filters:format(jpeg)/https://i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/v/g/KqdAvmQ1AwgklqqQ0Kug/cury-avante.jpg"
-            />
-          </div>
+          {topStory && (
+            <div className="max-w-[1400px] mx-auto px-4">
+              <TopStoryBanner
+                href={topStory.href || `/noticia/${topStory.slug}`}
+                kicker={`${topStory.category || 'DESTAQUE'} • ÚLTIMA ATUALIZAÇÃO`}
+                title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
+                excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
+                image={topStory.featured_image}
+              />
+            </div>
+          )}
           <SponsorBanner sponsor="snaider" />
         </div>
         <div className="mt-4"><HeroCarousel posts={heroPosts} /></div>
