@@ -2,6 +2,7 @@ import { manualPolitica1109 } from './manual-politica-1109';
 import { manualDaily1209 } from './manual-daily-1209';
 import { manualDaily1309 } from './manual-daily-1309';
 import { manualDaily1409 } from './manual-daily-1409';
+import { manualPolitica1409 } from './manual-politica-1409';
 
 const LOVABLE_FEED = "https://voz-central-ai.lovable.app/api/public/voznews-feed";
 
@@ -108,7 +109,7 @@ function byDateDesc(items: any[]) {
 }
 
 function mergeManual(items: any[]) {
-  const manual = [...manualDaily1409, ...manualDaily1309, ...manualDaily1209, ...manualPolitica1109].map(normalizeLovablePost);
+  const manual = [...manualPolitica1409, ...manualDaily1409, ...manualDaily1309, ...manualDaily1209, ...manualPolitica1109].map(normalizeLovablePost);
   const slugs = new Set(manual.map((p: any) => p.slug));
   return byDateDesc([...manual, ...items.filter((p: any) => !slugs.has(p.slug))]);
 }
@@ -125,7 +126,7 @@ export async function getInterviewPosts(limit = 5) {
 }
 
 export async function getPostBySlug(slug: string) {
-  const manual = [...manualDaily1409, ...manualDaily1309, ...manualDaily1209, ...manualPolitica1109].find((item: any) => item.slug === slug);
+  const manual = [...manualPolitica1409, ...manualDaily1409, ...manualDaily1309, ...manualDaily1209, ...manualPolitica1109].find((item: any) => item.slug === slug);
   if (manual) return enrichPostsWithImages(manual);
   const all = await fetchLiveNews(150);
   if (all && all.length > 0) {
