@@ -14,6 +14,7 @@ import ViralStrip from '@/components/home/ViralStrip';
 import InstagramVideoBanner from '@/components/common/InstagramVideoBanner';
 import SponsorBanner from '@/components/common/SponsorBanner';
 import TopStoryBanner from '@/components/common/TopStoryBanner';
+import TerracapBanner from '@/components/common/TerracapBanner';
 
 export const revalidate = 61;
 
@@ -85,6 +86,7 @@ export default async function Home() {
       <Header />
       <main className="pt-16">
         <TrendingBar posts={posts} />
+        <TerracapBanner />
         <div className="pt-4 space-y-4">
           {topStory && (
             <div className="max-w-[1400px] mx-auto px-4">
