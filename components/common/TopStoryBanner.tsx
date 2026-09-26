@@ -19,19 +19,9 @@ export default function TopStoryBanner({
     <section className="my-6">
       <Link
         href={href}
-        className="group grid overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-sm transition hover:shadow-lg md:grid-cols-2"
+        className="group block overflow-hidden rounded-2xl border border-neutral-200 bg-white shadow-md transition hover:shadow-xl"
       >
-        <div className="relative aspect-[16/9] w-full overflow-hidden md:aspect-auto md:h-full">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover object-top transition duration-500 group-hover:scale-105"
-            loading="eager"
-          />
-        </div>
-
-        <div className="flex flex-col justify-center gap-3 p-5 md:p-8">
+        <div className="flex flex-col justify-center gap-3 p-6 md:p-10">
           <span className="w-fit rounded-full bg-red-700 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white">
             {kicker}
           </span>
