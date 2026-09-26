@@ -1,5 +1,4 @@
 import Header from '@/components/layout/Header';
-import HeroCarousel from '@/components/home/HeroCarousel';
 import LatestNews from '@/components/home/LatestNews';
 import InterviewsSection from '@/components/home/InterviewsSection';
 import Sidebar from '@/components/layout/Sidebar';
@@ -101,7 +100,6 @@ export default async function Home() {
           )}
           <SponsorBanner sponsor="snaider" />
         </div>
-        <div className="mt-4"><HeroCarousel posts={heroPosts} /></div>
         <InstagramVideoBanner />
         <div className="bg-white pt-8"><div className="max-w-[1400px] mx-auto px-4"><LatestNews posts={posts} /></div></div>
         <div className="mt-4"><PremiumBanner variant={0} /></div>
