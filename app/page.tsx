@@ -14,6 +14,7 @@ import ViralStrip from '@/components/home/ViralStrip';
 import InstagramVideoBanner from '@/components/common/InstagramVideoBanner';
 import SponsorBanner from '@/components/common/SponsorBanner';
 import TopStoryBanner from '@/components/common/TopStoryBanner';
+import TerracapBanner from '@/components/common/TerracapBanner';
 
 export const revalidate = 61;
 
@@ -36,9 +37,15 @@ export default async function Home() {
     href: '/noticia/roney-nemer-volta-disputa-distrital-experiencia-propostas-brasilia',
   };
 
+  const pesquisaAntiga = (p: any) => {
+    const texto = `${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}`
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    return texto.includes('datafolha') && texto.includes('flavio bolsonaro');
+  };
+
   const posts = [
     roneyPost,
-    ...feedPosts.filter((p: any) => p?.slug !== roneyPost.slug),
+    ...feedPosts.filter((p: any) => p?.slug !== roneyPost.slug && !pesquisaAntiga(p)),
   ];
 
   const norm = (p: any) =>
@@ -80,7 +87,7 @@ export default async function Home() {
       <main className="pt-16">
         <TrendingBar posts={posts} />
         <div className="pt-4 space-y-4">
-          <SponsorBanner sponsor="petrobras" />
+          <TerracapBanner />
           {topStory && (
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
