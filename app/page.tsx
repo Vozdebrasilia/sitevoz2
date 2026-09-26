@@ -70,7 +70,13 @@ export default async function Home() {
     });
 
   const heroPosts = recentes.slice(0, 8);
-  const topStory = heroPosts[0];
+  const topStory = {
+    href: 'https://www.cnnbrasil.com.br/politica/stf-condena-eduardo-a-pagar-r-80-mil-por-difamacao-contra-tabata/',
+    category: 'Política',
+    title: { rendered: 'STF condena Eduardo Bolsonaro por difamação contra Tabata Amaral' },
+    excerpt: { rendered: 'Decisão divulgada neste sábado (26) prevê multa superior a R$ 80 mil e pena de um ano em regime inicial aberto; ainda cabe recurso.' },
+    featured_image: '',
+  };
 
   const categories: { title: string; category: string }[] = [
     { title: 'Política', category: 'politica' }, { title: 'Distrito Federal', category: 'distrito-federal' },
@@ -91,7 +97,7 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker={`${topStory.category || 'DESTAQUE'} • ÚLTIMA ATUALIZAÇÃO`}
+                kicker="MANCHETE DE HOJE • CNN BRASIL • 26/09/2026"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
