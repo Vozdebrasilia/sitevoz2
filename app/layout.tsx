@@ -126,6 +126,7 @@ export default function RootLayout({
         </Script>
         <TerracapBanner />
         {children}
+        <TerracapBanner />
       </body>
     </html>
   );
