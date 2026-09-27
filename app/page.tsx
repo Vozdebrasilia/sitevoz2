@@ -91,7 +91,6 @@ export default async function Home() {
       <Header />
       <main className="pt-16">
         <TrendingBar posts={posts} />
-        <TerracapBanner />
         <div className="pt-4 space-y-4">
           {topStory && (
             <div className="max-w-[1400px] mx-auto px-4">
@@ -112,6 +111,7 @@ export default async function Home() {
         <div className="mt-6"><SponsorBanner sponsor="visao" /></div>
         <ViralStrip />
         <MosaicHighlights posts={posts} />
+        <div className="mt-6 mb-2"><TerracapBanner /></div>
 
         <div className="mt-6 mb-2">
           <PremiumBanner variant={3} />
