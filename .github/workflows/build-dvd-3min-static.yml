@@ -50,7 +50,7 @@ jobs:
 
       - name: Join 40 scenes into 5 minutes
         run: |
-          ls c*.mp4 | sort | sed "s#^#file '#; s#$#'#" > concat.txt
+          cp concat-template.txt concat.txt
           ffmpeg -y -f concat -safe 0 -i concat.txt -c copy joined.mp4
           ffmpeg -y -i joined.mp4 -t 300 -c:v libx264 -preset veryfast -crf 22 -c:a aac -b:a 160k -movflags +faststart DVD_FESTA_5_MINUTOS_TODAS_AS_PESSOAS.mp4
           ffprobe -v error -show_entries format=duration,size -of default=nw=1 DVD_FESTA_5_MINUTOS_TODAS_AS_PESSOAS.mp4
