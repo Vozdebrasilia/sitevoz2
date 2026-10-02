@@ -1,0 +1,122 @@
+name: DVD face audit
+
+on:
+  push:
+    branches:
+      - video-dvd-3min-final
+    paths:
+      - '.github/workflows/dvd-face-audit.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Install Python packages
+        run: |
+          python3 -m pip install --quiet opencv-python-headless numpy
+
+      - name: Download videos and face models
+        run: |
+          curl -L --fail -o p1.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/a02911e8-04b5-4ac0-9afb-e1cd0ce8fbcd.mp4
+          curl -L --fail -o p2.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/fe88bcc3-d14a-4e5d-b736-6df2c8fa7d22.mp4
+          curl -L --fail -o p3.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/b8dc40bf-c90d-4bc6-977c-867ea7e533c1.mp4
+          curl -L --fail -o p4.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/f0061d8f-8610-496d-b958-e714d532febd.mp4
+          curl -L --fail -o yunet.onnx https://github.com/opencv/opencv_zoo/raw/main/models/face_detection_yunet/face_detection_yunet_2023mar.onnx
+          curl -L --fail -o sface.onnx https://github.com/opencv/opencv_zoo/raw/main/models/face_recognition_sface/face_recognition_sface_2021dec.onnx
+
+      - name: Analyze distinct faces
+        run: |
+          cat > audit.py <<'PY'
+          import cv2, numpy as np, csv, os, math
+          detector=cv2.FaceDetectorYN.create("yunet.onnx","",(320,320),score_threshold=0.82,nms_threshold=0.3,top_k=5000)
+          recognizer=cv2.FaceRecognizerSF.create("sface.onnx","")
+          identities=[]
+          records=[]
+          sample_sec=2.0
+          sim_threshold=0.48
+
+          def fmt(t):
+              m=int(t//60); s=int(t%60)
+              return f"{m:02d}:{s:02d}"
+
+          for part in range(1,5):
+              cap=cv2.VideoCapture(f"p{part}.mp4")
+              fps=cap.get(cv2.CAP_PROP_FPS) or 30
+              total=cap.get(cv2.CAP_PROP_FRAME_COUNT)
+              dur=total/fps
+              t=0.0
+              while t<dur:
+                  cap.set(cv2.CAP_PROP_POS_MSEC,t*1000)
+                  ok,frame=cap.read()
+                  if not ok:
+                      t+=sample_sec; continue
+                  h,w=frame.shape[:2]
+                  detector.setInputSize((w,h))
+                  _,faces=detector.detect(frame)
+                  frame_face_ids=[]
+                  if faces is not None:
+                      for face in faces:
+                          x,y,fw,fh=face[:4]
+                          if fw<35 or fh<35: continue
+                          try:
+                              aligned=recognizer.alignCrop(frame,face)
+                              feat=recognizer.feature(aligned).flatten()
+                              feat=feat/(np.linalg.norm(feat)+1e-9)
+                          except:
+                              continue
+                          best=-1; bestsim=-1
+                          for i,it in enumerate(identities):
+                              sim=float(np.dot(feat,it["centroid"]))
+                              if sim>bestsim:
+                                  bestsim=sim; best=i
+                          if best>=0 and bestsim>=sim_threshold:
+                              it=identities[best]
+                              it["count"]+=1
+                              it["centroid"]=(it["centroid"]*(it["count"]-1)+feat)/it["count"]
+                              it["centroid"]/=(np.linalg.norm(it["centroid"])+1e-9)
+                              it["parts"].add(part)
+                              it["first"]=min(it["first"],(part,t))
+                              it["last"]=max(it["last"],(part,t))
+                              idx=best
+                          else:
+                              identities.append({"centroid":feat.copy(),"count":1,"parts":{part},"first":(part,t),"last":(part,t)})
+                              idx=len(identities)-1
+                          frame_face_ids.append(idx)
+                  records.append((part,t,len(frame_face_ids),len(set(frame_face_ids))))
+                  t+=sample_sec
+              cap.release()
+
+          stable=[(i,it) for i,it in enumerate(identities) if it["count"]>=2]
+          stable.sort(key=lambda x:x[1]["count"],reverse=True)
+
+          with open("face_report.csv","w",newline="") as f:
+              w=csv.writer(f)
+              w.writerow(["identity","detections","parts","first_seen","last_seen"])
+              for rank,(i,it) in enumerate(stable,1):
+                  w.writerow([rank,it["count"],",".join(map(str,sorted(it["parts"]))),f"P{it['first'][0]} {fmt(it['first'][1])}",f"P{it['last'][0]} {fmt(it['last'][1])}"])
+
+          with open("frame_report.csv","w",newline="") as f:
+              w=csv.writer(f); w.writerow(["part","time","faces","unique_faces_in_frame"])
+              for r in records: w.writerow([r[0],fmt(r[1]),r[2],r[3]])
+
+          top=sorted(records,key=lambda x:x[2],reverse=True)[:40]
+          print("APPROX_DISTINCT_FACES",len(stable))
+          print("RAW_FACE_CLUSTERS",len(identities))
+          print("TOP_CROWD_TIMESTAMPS")
+          for part,t,n,u in top[:25]:
+              print(f"P{part} {fmt(t)} faces={n}")
+          print("MOST_FREQUENT_IDENTITIES")
+          for rank,(i,it) in enumerate(stable[:20],1):
+              print(f"ID{rank} detections={it['count']} parts={sorted(it['parts'])} first=P{it['first'][0]} {fmt(it['first'][1])} last=P{it['last'][0]} {fmt(it['last'][1])}")
+          PY
+          python3 audit.py
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: DVD_FACE_AUDIT_REPORT
+          path: |
+            face_report.csv
+            frame_report.csv
+          retention-days: 7
