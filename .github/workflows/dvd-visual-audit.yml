@@ -1,0 +1,43 @@
+name: DVD full visual audit
+
+on:
+  push:
+    branches:
+      - video-dvd-3min-final
+    paths:
+      - '.github/workflows/dvd-visual-audit.yml'
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Install FFmpeg
+        run: |
+          curl -L --fail --retry 3 -o ffmpeg.tar.xz https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz
+          tar -xf ffmpeg.tar.xz
+          DIR=$(find . -maxdepth 1 -type d -name 'ffmpeg-*-amd64-static' | head -1)
+          echo "$PWD/$DIR" >> "$GITHUB_PATH"
+
+      - name: Download four parts
+        run: |
+          curl -L --fail --retry 3 -o p1.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/a02911e8-04b5-4ac0-9afb-e1cd0ce8fbcd.mp4
+          curl -L --fail --retry 3 -o p2.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/fe88bcc3-d14a-4e5d-b736-6df2c8fa7d22.mp4
+          curl -L --fail --retry 3 -o p3.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/b8dc40bf-c90d-4bc6-977c-867ea7e533c1.mp4
+          curl -L --fail --retry 3 -o p4.mp4 https://cdn.creativeclaw.co/u/d4de7256/videos/f0061d8f-8610-496d-b958-e714d532febd.mp4
+
+      - name: Generate contact sheets every 10 seconds
+        run: |
+          mkdir -p audit
+          for n in 1 2 3 4; do
+            ffmpeg -y -i p$n.mp4 -vf "fps=1/10,scale=320:-1,tile=6x6:padding=2:margin=2" -q:v 4 audit/p${n}_%03d.jpg
+          done
+          ls -lh audit
+
+      - name: Upload audit
+        uses: actions/upload-artifact@v4
+        with:
+          name: DVD_FULL_VISUAL_AUDIT
+          path: audit/*.jpg
+          retention-days: 7
+          compression-level: 0
