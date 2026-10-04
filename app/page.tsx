@@ -21,31 +21,11 @@ export default async function Home() {
   const feedPosts = await getPosts(150);
   const interviews = await getInterviewPosts(40);
 
-  const roneyPost = {
-    id: 'roney-nemer-2026-09-01',
-    slug: 'roney-nemer-volta-disputa-distrital-experiencia-propostas-brasilia',
-    title: { rendered: 'Rôney Nemer: experiência e diálogo pelo Distrito Federal' },
-    excerpt: { rendered: 'Candidato a deputado distrital pelo PP, número 11111, Rôney Nemer retorna à disputa eleitoral com uma trajetória construída na administração pública, no Legislativo e nas comunidades de Brasília.' },
-    date: '2026-09-02T07:45:00-03:00',
-    published_at: '2026-09-02T07:45:00-03:00',
-    created_at: '2026-09-02T07:45:00-03:00',
-    category: 'Política',
-    categorySlug: 'politica',
-    categoryColor: 'bg-red-600',
-    featured_image: 'https://dados.agenciasertao.com/json/v1/eleicoes/2026/fotos/70002538503.jpg',
-    href: '/noticia/roney-nemer-volta-disputa-distrital-experiencia-propostas-brasilia',
-  };
-
-  const pesquisaAntiga = (p: any) => {
-    const texto = `${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}`
-      .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-    return texto.includes('datafolha') && texto.includes('flavio bolsonaro');
-  };
-
-  const posts = [
-    roneyPost,
-    ...feedPosts.filter((p: any) => p?.slug !== roneyPost.slug && !pesquisaAntiga(p)),
-  ];
+  const posts = feedPosts.filter((p: any) => {
+    const texto = \`${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}\`
+      .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
+    return !(texto.includes('datafolha') && texto.includes('flavio bolsonaro') && !String(p?.date || '').startsWith('2026-10-04'));
+  });
 
   const norm = (p: any) =>
     `${p?.title?.rendered ?? ''} ${p?.excerpt?.rendered ?? ''} ${p?.category ?? ''} ${p?.categorySlug ?? ''}`
@@ -71,11 +51,11 @@ export default async function Home() {
 
   const heroPosts = recentes.slice(0, 8);
   const topStory = {
-    href: 'https://www.cnnbrasil.com.br/politica/stf-condena-eduardo-a-pagar-r-80-mil-por-difamacao-contra-tabata/',
-    category: 'Política',
-    title: { rendered: 'STF condena Eduardo Bolsonaro por difamação contra Tabata Amaral' },
-    excerpt: { rendered: 'Decisão divulgada neste sábado (26) prevê multa superior a R$ 80 mil e pena de um ano em regime inicial aberto; ainda cabe recurso.' },
-    featured_image: '',
+    href: '/noticia/eleicoes-2026-158-milhoes-eleitores-votam-hoje',
+    category: 'Eleições 2026',
+    title: { rendered: 'Eleições 2026: 158,7 milhões de brasileiros estão aptos a votar neste domingo' },
+    excerpt: { rendered: 'Primeiro turno mobiliza o país; apuração oficial começa às 17h, no horário de Brasília.' },
+    featured_image: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&auto=format&fit=crop&q=85',
   };
 
   const categories: { title: string; category: string }[] = [
@@ -96,7 +76,7 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker="MANCHETE DE HOJE • CNN BRASIL • 26/09/2026"
+                kicker="MANCHETE DE HOJE • ELEIÇÕES 2026 • 04/10/2026"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
