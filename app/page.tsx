@@ -85,7 +85,16 @@ export default async function Home() {
           )}
           <SponsorBanner sponsor="snaider" />
         </div>
-        <InstagramVideoBanner />
+        <div className="w-full bg-[#020617] py-4">
+          <div className="mx-auto max-w-[1200px] px-4">
+            <img
+              src="https://cdn.creativeclaw.co/u/d4de7256/images/b00ab739-9a74-4feb-87f8-859e585a4a0e.png"
+              alt="Anuário Brasileiro 25 Anos — 1 milhão de exemplares, mil páginas e espaço para sua logomarca"
+              className="mx-auto block h-auto w-full rounded-xl shadow-lg"
+              loading="eager"
+            />
+          </div>
+        </div>
         <div className="bg-white pt-8"><div className="max-w-[1400px] mx-auto px-4"><LatestNews posts={posts} /></div></div>
         <div className="mt-4"><PremiumBanner variant={0} /></div>
         <div className="mt-6"><SponsorBanner sponsor="visao" /></div>
