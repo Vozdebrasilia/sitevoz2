@@ -69,7 +69,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
-      <main className="pt-16">
+      <main className="pt-0">
         <TrendingBar posts={posts} />
         <div className="pt-4 space-y-4">
           {topStory && (
