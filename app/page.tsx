@@ -22,7 +22,7 @@ export default async function Home() {
   const interviews = await getInterviewPosts(40);
 
   const posts = feedPosts.filter((p: any) => {
-    const texto = \`${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}\`
+    const texto = `${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}`
       .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
     return !(texto.includes('datafolha') && texto.includes('flavio bolsonaro') && !String(p?.date || '').startsWith('2026-10-04'));
   });
@@ -51,11 +51,10 @@ export default async function Home() {
 
   const heroPosts = recentes.slice(0, 8);
   const topStory = {
-    href: '/noticia/eleicoes-2026-158-milhoes-eleitores-votam-hoje',
-    category: 'Eleições 2026',
-    title: { rendered: 'Eleições 2026: 158,7 milhões de brasileiros estão aptos a votar neste domingo' },
-    excerpt: { rendered: 'Primeiro turno mobiliza o país; apuração oficial começa às 17h, no horário de Brasília.' },
-    featured_image: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&auto=format&fit=crop&q=85',
+    href: '/noticia/luchsinger-afirma-lulinha-reunioes-ministros-17-10-2026',
+    title: { rendered: "Luchsinger afirma que Lulinha se reuniu com ministros; Camilo nega tratar de negócios" },
+    excerpt: { rendered: "Empresária fez declarações à CNN neste sábado (17). Assessoria de Camilo Santana negou encontros com o filho de Lula para assuntos de governo ou negócios." },
+    featured_image: 'https://live.staticflickr.com/65535/55311116847_fd83a778ba.jpg',
   };
 
   const categories: { title: string; category: string }[] = [
@@ -76,7 +75,7 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker="MANCHETE DE HOJE • ELEIÇÕES 2026 • 04/10/2026"
+                kicker="POLÍTICA • 17/10/2026"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
