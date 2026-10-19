@@ -51,11 +51,11 @@ export default async function Home() {
 
   const heroPosts = recentes.slice(0, 8);
   const topStory = {
-    href: '/noticia/eleicoes-2026-158-milhoes-eleitores-votam-hoje',
+    href: '/debate-lula-flavio-2026',
     category: 'Eleições 2026',
-    title: { rendered: 'Eleições 2026: 158,7 milhões de brasileiros estão aptos a votar neste domingo' },
-    excerpt: { rendered: 'Primeiro turno mobiliza o país; apuração oficial começa às 17h, no horário de Brasília.' },
-    featured_image: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&auto=format&fit=crop&q=85',
+    title: { rendered: 'Debate Lula x Flávio: 10 pontos para entender os confrontos e as propostas' },
+    excerpt: { rendered: 'Análise editorial da coluna Paulo Fayad: segurança, economia, SUS, transparência e o que faltou esclarecer no debate da Band.' },
+    featured_image: 'https://i.ytimg.com/vi/U9QDakxHIN8/hqdefault.jpg',
   };
 
   const categories: { title: string; category: string }[] = [
@@ -76,7 +76,7 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker="MANCHETE DE HOJE • ELEIÇÕES 2026 • 04/10/2026"
+                kicker="MANCHETE DE HOJE • DEBATE PRESIDENCIAL • 19/10/2026"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
