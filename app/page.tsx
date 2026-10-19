@@ -22,8 +22,8 @@ export default async function Home() {
   const interviews = await getInterviewPosts(40);
 
   const posts = feedPosts.filter((p: any) => {
-    const texto = \`${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}\`
-      .normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').toLowerCase();
+    const texto = `${p?.title?.rendered ?? p?.title ?? ''} ${p?.excerpt?.rendered ?? p?.excerpt ?? ''}`
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
     return !(texto.includes('datafolha') && texto.includes('flavio bolsonaro') && !String(p?.date || '').startsWith('2026-10-04'));
   });
 
