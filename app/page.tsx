@@ -49,7 +49,16 @@ export default async function Home() {
       return db - da;
     });
 
-  const heroPosts = recentes.slice(0, 8);
+  // A primeira dobra prioriza estritamente as notícias dos últimos dois dias.
+  // As matérias anteriores permanecem nas editorias e no arquivo, sem ocupar a vitrine.
+  const agora = Date.now();
+  const atuais = recentes.filter((p: any) => {
+    const data = new Date(p?.published_at || p?.created_at || p?.date || 0).getTime();
+    return Number.isFinite(data) && data <= agora + 60 * 60 * 1000 && data >= agora - 48 * 60 * 60 * 1000;
+  });
+  const capaAtual = atuais.length ? atuais : recentes.slice(0, 8);
+  const postsDestaques = [...capaAtual, ...recentes.filter((p: any) => !capaAtual.includes(p))];
+  const heroPosts = capaAtual.slice(0, 8);
   const topStory = {
     href: '/debate-lula-flavio-2026',
     category: 'Eleições 2026',
@@ -70,7 +79,7 @@ export default async function Home() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="pt-0">
-        <TrendingBar posts={posts} />
+        <TrendingBar posts={postsDestaques} />
         <div className="pt-4 space-y-4">
           {topStory && (
             <div className="max-w-[1400px] mx-auto px-4">
@@ -95,11 +104,11 @@ export default async function Home() {
             />
           </div>
         </div>
-        <div className="bg-white pt-8"><div className="max-w-[1400px] mx-auto px-4"><LatestNews posts={posts} /></div></div>
+        <div className="bg-white pt-8"><div className="max-w-[1400px] mx-auto px-4"><LatestNews posts={capaAtual} /></div></div>
         <div className="mt-4"><PremiumBanner variant={0} /></div>
         <div className="mt-6"><SponsorBanner sponsor="visao" /></div>
         <ViralStrip />
-        <MosaicHighlights posts={posts} />
+        <MosaicHighlights posts={postsDestaques} />
         <div className="mt-6 mb-2"><TerracapBanner /></div>
 
         <div className="mt-6 mb-2">
