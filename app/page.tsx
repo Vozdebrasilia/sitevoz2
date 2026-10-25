@@ -79,6 +79,29 @@ export default async function Home() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="pt-0">
+
+        <section id="em-evidencia" aria-labelledby="exterior-title" className="max-w-[1400px] mx-auto px-4 py-6">
+          <div className="bg-white rounded-2xl border-2 border-blue-800 p-5 md:p-8 shadow-lg">
+            <p className="text-blue-800 font-black uppercase tracking-widest text-sm">Em Evidência • Eleições 2026 • 25/10</p>
+            <h1 id="exterior-title" className="text-2xl md:text-4xl font-black text-gray-900 mt-2">Votos no exterior: parcial de sete países</h1>
+            <p className="text-gray-600 mt-3">Recorte da reportagem da Rede 98 publicada às 9h27. Não representa o total mundial nem a totalização oficial do TSE.</p>
+            <div className="grid md:grid-cols-2 gap-6 items-center mt-6">
+              <div className="flex flex-col items-center gap-4">
+                <div role="img" aria-label="Gráfico de pizza: Flávio Bolsonaro 77,48%; Lula 22,52% no recorte de sete países" className="w-64 h-64 rounded-full shadow-md" style={{background:'conic-gradient(#1d4ed8 0% 77.48%, #dc2626 77.48% 100%)'}} />
+                <ol className="space-y-2 text-lg font-bold">
+                  <li className="text-blue-700">1. Flávio Bolsonaro — 29.869 votos (77,48%)</li>
+                  <li className="text-red-600">2. Lula — 8.680 votos (22,52%)</li>
+                </ol>
+              </div>
+              <div className="overflow-x-auto"><table className="w-full text-sm md:text-base text-left">
+                <caption className="font-bold text-left mb-3">Votos por país • total do recorte: 38.549</caption>
+                <thead><tr className="border-b-2"><th className="py-2">País</th><th className="text-blue-700">Flávio</th><th className="text-red-600">Lula</th></tr></thead>
+                <tbody>{[['Japão',29215,7331],['China',267,502],['Nova Zelândia',101,418],['Singapura',121,213],['Coreia do Sul',82,148],['Malásia',44,41],['Filipinas',39,27]].map(([pais,f,l])=>(<tr key={String(pais)} className="border-b"><th className="py-2 font-medium">{pais}</th><td className="text-blue-700 font-bold">{Number(f).toLocaleString('pt-BR')}</td><td className="text-red-600 font-bold">{Number(l).toLocaleString('pt-BR')}</td></tr>))}</tbody>
+              </table></div>
+            </div>
+            <p className="mt-5 text-sm text-gray-600">Fonte: <a className="underline" href="https://rede98.com.br/eleicoes2026/acompanhe-a-votacao-no-exterior-no-2o-turno-das-eleicoes-2026/" target="_blank" rel="noreferrer">Rede 98, levantamento de boletins de urna</a>. Percentuais calculados sobre os votos dos dois candidatos nos sete países listados. A divulgação oficial pelo TSE começa às 17h de Brasília.</p>
+          </div>
+        </section>
         <TrendingBar posts={postsDestaques} />
         <div className="pt-4 space-y-4">
           {topStory && (
