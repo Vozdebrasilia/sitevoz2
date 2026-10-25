@@ -60,11 +60,11 @@ export default async function Home() {
   const postsDestaques = [...capaAtual, ...recentes.filter((p: any) => !capaAtual.includes(p))];
   const heroPosts = capaAtual.slice(0, 8);
   const topStory = {
-    href: '/debate-lula-flavio-2026',
+    href: '/noticias/votacao-prorrogada-19h-25-10-2026.html',
     category: 'Eleições 2026',
-    title: { rendered: 'Debate Lula x Flávio: 10 pontos para entender os confrontos e as propostas' },
-    excerpt: { rendered: 'Análise editorial da coluna Paulo Fayad: segurança, economia, SUS, transparência e o que faltou esclarecer no debate da Band.' },
-    featured_image: 'https://i.ytimg.com/vi/U9QDakxHIN8/hqdefault.jpg',
+    title: { rendered: 'Zanin prorroga votação até as 19h em todo o país, informa imprensa' },
+    excerpt: { rendered: 'CNN Brasil e Veja informam ampliação do horário neste domingo (25). Acompanhe a atualização.' },
+    featured_image: '/news-images/gavel.png',
   };
 
   const categories: { title: string; category: string }[] = [
@@ -85,7 +85,7 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker="MANCHETE DE HOJE • DEBATE PRESIDENCIAL • 19/10/2026"
+                kicker="URGENTE • HORÁRIO DE VOTAÇÃO • 25/10/2026"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
