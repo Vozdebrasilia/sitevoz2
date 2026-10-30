@@ -60,11 +60,11 @@ export default async function Home() {
   const postsDestaques = [...capaAtual, ...recentes.filter((p: any) => !capaAtual.includes(p))];
   const heroPosts = capaAtual.slice(0, 8);
   const topStory = {
-    href: '/debate-lula-flavio-2026',
-    category: 'Eleições 2026',
-    title: { rendered: 'Debate Lula x Flávio: 10 pontos para entender os confrontos e as propostas' },
-    excerpt: { rendered: 'Análise editorial da coluna Paulo Fayad: segurança, economia, SUS, transparência e o que faltou esclarecer no debate da Band.' },
-    featured_image: 'https://i.ytimg.com/vi/U9QDakxHIN8/hqdefault.jpg',
+    href: '/noticias/edicao-30-outubro/#finados',
+    category: 'Brasília e Entorno',
+    title: { rendered: 'PRF reforça fiscalização nas rodovias do DF e Entorno para o feriado de Finados' },
+    excerpt: { rendered: 'Operação de 30 de outubro a 2 de novembro busca prevenir acidentes. Veja as orientações aos motoristas e as demais notícias verificadas.' },
+    featured_image: 'https://www.gov.br/prf/pt-br/noticias/estaduais/distrito-federal/prf-reforca-fiscalizacao-no-df-e-entorno-durante-a-operacao-finados-2026/@@images/image-1600-0ff198658edd999c91f34ce36d32d1fe.jpeg',
   };
 
   const categories: { title: string; category: string }[] = [
@@ -85,13 +85,21 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker="MANCHETE DE HOJE • DEBATE PRESIDENCIAL • 19/10/2026"
+                kicker="MANCHETE • BRASÍLIA • FONTE 29/10/2026 • EDIÇÃO 30/10"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
               />
             </div>
           )}
+          <section aria-label="Quatro notícias verificadas de 29 de outubro" className="max-w-[1400px] mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              ['habitacao','HABITAÇÃO','FGTS aprova R$ 144,5 bilhões para habitação em 2027'],
+              ['energia','ENERGIA','Leilão de transmissão prevê R$ 8,9 bilhões em investimentos'],
+              ['saude','SAÚDE','SUS terá R$ 3,95 bilhões para novo ciclo de projetos do Proadi'],
+              ['educacao','EDUCAÇÃO','Revisão para o Enem mobiliza estudantes da EJA no Piauí'],
+            ].map(([id,tag,title]) => <a key={id} href={`/noticias/edicao-30-outubro/#${id}`} className="block rounded-xl border border-amber-300 bg-white shadow-md p-5 hover:shadow-xl"><small className="text-amber-700 font-bold">FONTE 29/10 • {tag}</small><h3 className="text-lg font-bold text-slate-900 mt-2">{title}</h3><span className="text-blue-700 font-bold text-sm mt-3 block">LER REPORTAGEM →</span></a>)}
+          </section>
           <SponsorBanner sponsor="snaider" />
         </div>
         <div className="w-full bg-[#020617] py-4">
