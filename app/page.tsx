@@ -60,11 +60,11 @@ export default async function Home() {
   const postsDestaques = [...capaAtual, ...recentes.filter((p: any) => !capaAtual.includes(p))];
   const heroPosts = capaAtual.slice(0, 8);
   const topStory = {
-    href: '/noticias/edicao-30-outubro/#finados',
-    category: 'Brasília e Entorno',
-    title: { rendered: 'PRF reforça fiscalização nas rodovias do DF e Entorno para o feriado de Finados' },
-    excerpt: { rendered: 'Operação de 30 de outubro a 2 de novembro busca prevenir acidentes. Veja as orientações aos motoristas e as demais notícias verificadas.' },
-    featured_image: 'https://www.gov.br/prf/pt-br/noticias/estaduais/distrito-federal/prf-reforca-fiscalizacao-no-df-e-entorno-durante-a-operacao-finados-2026/@@images/image-1600-0ff198658edd999c91f34ce36d32d1fe.jpeg',
+    href: '/noticias/edicao-31-outubro/#cidadania',
+    category: 'Brasília • Cidadania',
+    title: { rendered: 'Encontro nacional do SUAS reúne propostas para fortalecer direitos e participação social' },
+    excerpt: { rendered: 'Participantes encerram encontro em Brasília com propostas sobre assistência social, direitos e participação popular, divulgadas em 30 de outubro.' },
+    featured_image: 'https://www.gov.br/mds/pt-br/noticias/encontro-nacional-dos-usuarios-do-suas-encerra-programacao-com-construcao-coletiva-de-carta-por-direitos-e-participacao-social/foto-divulgacao-mds/@@images/b0763b39-e1cb-4857-8a07-42949e7c676c.jpeg',
   };
 
   const categories: { title: string; category: string }[] = [
@@ -85,20 +85,20 @@ export default async function Home() {
             <div className="max-w-[1400px] mx-auto px-4">
               <TopStoryBanner
                 href={topStory.href || `/noticia/${topStory.slug}`}
-                kicker="MANCHETE • BRASÍLIA • FONTE 29/10/2026 • EDIÇÃO 30/10"
+                kicker="MANCHETE • BRASÍLIA • FONTE 30/10/2026 • EDIÇÃO 31/10"
                 title={typeof topStory.title === 'object' ? topStory.title?.rendered || '' : topStory.title || ''}
                 excerpt={typeof topStory.excerpt === 'object' ? topStory.excerpt?.rendered || '' : topStory.excerpt || ''}
                 image={topStory.featured_image}
               />
             </div>
           )}
-          <section aria-label="Quatro notícias verificadas de 29 de outubro" className="max-w-[1400px] mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <section aria-label="Quatro notícias verificadas de 30 de outubro" className="max-w-[1400px] mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              ['habitacao','HABITAÇÃO','FGTS aprova R$ 144,5 bilhões para habitação em 2027'],
-              ['energia','ENERGIA','Leilão de transmissão prevê R$ 8,9 bilhões em investimentos'],
-              ['saude','SAÚDE','SUS terá R$ 3,95 bilhões para novo ciclo de projetos do Proadi'],
-              ['educacao','EDUCAÇÃO','Revisão para o Enem mobiliza estudantes da EJA no Piauí'],
-            ].map(([id,tag,title]) => <a key={id} href={`/noticias/edicao-30-outubro/#${id}`} className="block rounded-xl border border-amber-300 bg-white shadow-md p-5 hover:shadow-xl"><small className="text-amber-700 font-bold">FONTE 29/10 • {tag}</small><h3 className="text-lg font-bold text-slate-900 mt-2">{title}</h3><span className="text-blue-700 font-bold text-sm mt-3 block">LER REPORTAGEM →</span></a>)}
+              ['energia','ENERGIA','Leilão de transmissão termina com R$ 8,8 bilhões em investimentos'],
+              ['saude','SAÚDE','Belo Horizonte terá hospital 100% SUS com 250 novos leitos'],
+              ['transportes','MOBILIDADE','Brasil apresenta R$ 262,6 bilhões em projetos de transporte'],
+              ['cultura','CULTURA','Brasil amplia cooperação internacional em dança'],
+            ].map(([id,tag,title]) => <a key={id} href={`/noticias/edicao-31-outubro/#${id}`} className="block rounded-xl border border-amber-300 bg-white shadow-md p-5 hover:shadow-xl"><small className="text-amber-700 font-bold">FONTE 30/10 • {tag}</small><h3 className="text-lg font-bold text-slate-900 mt-2">{title}</h3><span className="text-blue-700 font-bold text-sm mt-3 block">LER REPORTAGEM →</span></a>)}
           </section>
           <SponsorBanner sponsor="snaider" />
         </div>
