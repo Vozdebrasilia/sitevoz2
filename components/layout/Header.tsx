@@ -111,7 +111,7 @@ export default function Header() {
           </div>
         )}
       </header>
-      <div className="h-36"></div>
+      <section className="bg-white border-b border-amber-300"><div className="max-w-[1400px] mx-auto px-4 py-5 flex flex-wrap justify-center items-center gap-8 md:gap-16"><a href="https://www.voznewsbrasil.com.br/" target="_blank" rel="noopener noreferrer"><img src="https://www.voznewsbrasil.com.br/logo-voznews-oficial.png" alt="Voz News Brasil" className="max-w-[230px] max-h-[75px] object-contain"/></a><a href="https://www.xelvya.com/" target="_blank" rel="noopener noreferrer" className="text-3xl font-bold text-blue-950">XELVYA AI</a></div></section>
     </>
   );
 }
