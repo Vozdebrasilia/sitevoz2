@@ -77,6 +77,14 @@ export default async function Home() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="pt-0">
+        <section aria-label="Cobertura especial do Enem 2026" className="mx-auto max-w-[1400px] px-4 pt-5 pb-3">
+          <a href="/noticias/enem-2026-gabarito-oficial" className="block rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-slate-950 to-blue-900 px-6 py-7 text-white shadow-xl hover:shadow-2xl">
+            <span className="text-sm font-black tracking-wider text-amber-300">COBERTURA ESPECIAL · ENEM 2026 · 08/11</span>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">Gabarito oficial ainda não foi divulgado pelo Inep</h2>
+            <p className="mt-3 max-w-4xl text-base text-blue-100 md:text-lg">Primeira etapa encerrada. A segunda prova será em 15 de novembro. Saiba quando o Inep deve publicar as respostas oficiais e como escolher a cor correta do caderno.</p>
+            <strong className="mt-5 inline-block rounded-lg bg-amber-400 px-5 py-3 text-sm font-black text-slate-950">ACOMPANHE A DIVULGAÇÃO OFICIAL →</strong>
+          </a>
+        </section>
         <TrendingBar posts={[...edicao31Posts, ...postsDestaques]} />
         <div className="pt-4 space-y-4">
           {topStory && (
