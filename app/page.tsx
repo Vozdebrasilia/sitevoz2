@@ -77,13 +77,30 @@ export default async function Home() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="pt-0">
-        <section aria-label="Cobertura especial do Enem 2026" className="mx-auto max-w-[1400px] px-4 pt-5 pb-3">
-          <a href="/noticias/enem-2026-gabarito-oficial" className="block rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-slate-950 to-blue-900 px-6 py-7 text-white shadow-xl hover:shadow-2xl">
-            <span className="text-sm font-black tracking-wider text-amber-300">COBERTURA ESPECIAL · ENEM 2026 · 08/11</span>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">Gabarito oficial ainda não foi divulgado pelo Inep</h2>
-            <p className="mt-3 max-w-4xl text-base text-blue-100 md:text-lg">Primeira etapa encerrada. A segunda prova será em 15 de novembro. Saiba quando o Inep deve publicar as respostas oficiais e como escolher a cor correta do caderno.</p>
-            <strong className="mt-5 inline-block rounded-lg bg-amber-400 px-5 py-3 text-sm font-black text-slate-950">ACOMPANHE A DIVULGAÇÃO OFICIAL →</strong>
-          </a>
+        <section aria-label="Edição atualizada de 9 de novembro de 2026" className="mx-auto max-w-[1400px] px-4 pt-5 pb-4">
+          <div className="rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-slate-950 to-blue-950 px-6 py-7 text-white shadow-xl">
+            <span className="text-sm font-black tracking-wider text-amber-300">TV VOZ DE BRASÍLIA · EDIÇÃO DE SEGUNDA-FEIRA · 09/11/2026</span>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">Enem 2026: regras para reaplicação e balanço do primeiro dia</h2>
+            <p className="mt-3 max-w-4xl text-base text-blue-100 md:text-lg">Candidatos que se enquadram nos critérios do edital poderão pedir reaplicação de 16 a 20 de novembro. O Inep prevê as novas provas para 15 e 16 de dezembro. A segunda etapa regular será em 15 de novembro.</p>
+            <a href="https://agenciabrasil.ebc.com.br/educacao/noticia/2026-11/enem-2026-saiba-quem-tem-direito-a-reaplicacao-do-exame" target="_blank" rel="noopener noreferrer" className="mt-5 inline-block rounded-lg bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 hover:bg-amber-300">LER REPORTAGEM VERIFICADA · 09/11 →</a>
+          </div>
+          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {cat:'JUSTIÇA E CIDADANIA',title:'Ministério da Justiça pede remoção de 348 perfis que divulgam apostas ilegais',detail:'Medida de combate à promoção de plataformas irregulares.',href:'https://agenciagov.ebc.com.br/noticias'},
+              {cat:'TRABALHO E ECONOMIA',title:'Mulheres lideraram geração de empregos com carteira assinada em setembro',detail:'Dados divulgados pelo governo federal em 9 de novembro.',href:'https://agenciagov.ebc.com.br/noticias'},
+              {cat:'ECONOMIA',title:'Comércio exterior brasileiro movimenta US$ 66,3 bilhões em outubro',detail:'Resultado divulgado no balanço oficial do comércio.',href:'https://agenciagov.ebc.com.br/noticias'},
+              {cat:'SAÚDE',title:'Perícia médica por telemedicina já está disponível em 900 agências do INSS',detail:'Nova etapa amplia o atendimento previdenciário.',href:'https://agenciagov.ebc.com.br/noticias'},
+              {cat:'TECNOLOGIA',title:'Governo anuncia investimento em cabos submarinos para ampliar conectividade',detail:'Iniciativa busca expandir a infraestrutura de telecomunicações.',href:'https://agenciagov.ebc.com.br/noticias'},
+              {cat:'EDUCAÇÃO · ENEM',title:'Enem 2026 registra participação histórica de estudantes da rede pública',detail:'Cobertura da prova aplicada em 8 de novembro.',href:'https://agenciabrasil.ebc.com.br/radioagencia-nacional/educacao/audio/2026-11/enem-2026-registra-recorde-de-participacao-de-alunos-da-rede-publica'}
+            ].map((n) => (
+              <a key={n.title} href={n.href} target="_blank" rel="noopener noreferrer" className="block rounded-xl border border-amber-300 bg-white p-5 shadow-md hover:shadow-xl">
+                <span className="text-xs font-black tracking-wide text-amber-700">{n.cat} · 09/11/2026</span>
+                <h3 className="mt-2 text-lg font-extrabold leading-snug text-slate-900">{n.title}</h3>
+                <p className="mt-2 text-sm text-slate-600">{n.detail}</p>
+                <strong className="mt-3 block text-sm text-blue-800">CONSULTAR FONTE OFICIAL →</strong>
+              </a>
+            ))}
+          </div>
         </section>
         <TrendingBar posts={[...edicao31Posts, ...postsDestaques]} />
         <div className="pt-4 space-y-4">
