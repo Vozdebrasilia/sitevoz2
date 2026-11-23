@@ -77,29 +77,21 @@ export default async function Home() {
     <div className="min-h-screen bg-gray-50">
       <Header />
       <main className="pt-0">
-        <section aria-label="Edição atualizada de 9 de novembro de 2026" className="mx-auto max-w-[1400px] px-4 pt-5 pb-4">
-          <div className="rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-slate-950 to-blue-950 px-6 py-7 text-white shadow-xl">
-            <span className="text-sm font-black tracking-wider text-amber-300">TV VOZ DE BRASÍLIA · EDIÇÃO DE SEGUNDA-FEIRA · 09/11/2026</span>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-5xl">Enem 2026: regras para reaplicação e balanço do primeiro dia</h2>
-            <p className="mt-3 max-w-4xl text-base text-blue-100 md:text-lg">Candidatos que se enquadram nos critérios do edital poderão pedir reaplicação de 16 a 20 de novembro. O Inep prevê as novas provas para 15 e 16 de dezembro. A segunda etapa regular será em 15 de novembro.</p>
-            <a href="https://agenciabrasil.ebc.com.br/educacao/noticia/2026-11/enem-2026-saiba-quem-tem-direito-a-reaplicacao-do-exame" target="_blank" rel="noopener noreferrer" className="mt-5 inline-block rounded-lg bg-amber-400 px-5 py-3 text-sm font-black text-slate-950 hover:bg-amber-300">LER REPORTAGEM VERIFICADA · 09/11 →</a>
+        <section aria-label="Edição atualizada de 23 de novembro de 2026" className="mx-auto max-w-[1400px] px-4 pt-5 pb-4">
+          <div className="rounded-2xl border-2 border-amber-400 bg-gradient-to-r from-slate-950 to-blue-950 px-6 py-6 text-white shadow-xl">
+            <span className="text-sm font-black tracking-wider text-amber-300">TV VOZ DE BRASÍLIA · SEGUNDA-FEIRA · 23/11/2026</span>
+            <h2 className="mt-3 text-3xl font-extrabold leading-tight md:text-4xl">Brasília em pauta: as prioridades de Júlio César e Rôney Nemer para 2027</h2>
+            <p className="mt-3 max-w-4xl text-base text-blue-100">Duas reportagens autorais analisam o cenário pós-eleitoral do Distrito Federal e os compromissos anunciados pelos parlamentares eleitos.</p>
           </div>
-          <div className="mt-5 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {cat:'JUSTIÇA E CIDADANIA',title:'Ministério da Justiça pede remoção de 348 perfis que divulgam apostas ilegais',detail:'Medida de combate à promoção de plataformas irregulares.',href:'https://agenciagov.ebc.com.br/noticias'},
-              {cat:'TRABALHO E ECONOMIA',title:'Mulheres lideraram geração de empregos com carteira assinada em setembro',detail:'Dados divulgados pelo governo federal em 9 de novembro.',href:'https://agenciagov.ebc.com.br/noticias'},
-              {cat:'ECONOMIA',title:'Comércio exterior brasileiro movimenta US$ 66,3 bilhões em outubro',detail:'Resultado divulgado no balanço oficial do comércio.',href:'https://agenciagov.ebc.com.br/noticias'},
-              {cat:'SAÚDE',title:'Perícia médica por telemedicina já está disponível em 900 agências do INSS',detail:'Nova etapa amplia o atendimento previdenciário.',href:'https://agenciagov.ebc.com.br/noticias'},
-              {cat:'TECNOLOGIA',title:'Governo anuncia investimento em cabos submarinos para ampliar conectividade',detail:'Iniciativa busca expandir a infraestrutura de telecomunicações.',href:'https://agenciagov.ebc.com.br/noticias'},
-              {cat:'EDUCAÇÃO · ENEM',title:'Enem 2026 registra participação histórica de estudantes da rede pública',detail:'Cobertura da prova aplicada em 8 de novembro.',href:'https://agenciabrasil.ebc.com.br/radioagencia-nacional/educacao/audio/2026-11/enem-2026-registra-recorde-de-participacao-de-alunos-da-rede-publica'}
-            ].map((n) => (
-              <a key={n.title} href={n.href} target="_blank" rel="noopener noreferrer" className="block rounded-xl border border-amber-300 bg-white p-5 shadow-md hover:shadow-xl">
-                <span className="text-xs font-black tracking-wide text-amber-700">{n.cat} · 09/11/2026</span>
-                <h3 className="mt-2 text-lg font-extrabold leading-snug text-slate-900">{n.title}</h3>
-                <p className="mt-2 text-sm text-slate-600">{n.detail}</p>
-                <strong className="mt-3 block text-sm text-blue-800">CONSULTAR FONTE OFICIAL →</strong>
-              </a>
-            ))}
+          <div className="mt-5 grid grid-cols-1 gap-4 md:grid-cols-2">
+            <a href="/noticia/julio-cesar-reeleito-esporte-protecao-mulheres-2027" className="overflow-hidden rounded-xl border border-amber-300 bg-white shadow-md hover:shadow-xl">
+              <img src="https://www.camara.leg.br/internet/deputado/bandep/204372.jpg" alt="Deputado federal Júlio César Ribeiro, fotografia oficial da Câmara" className="h-56 w-full object-cover object-top" />
+              <div className="p-5"><span className="text-xs font-black text-amber-700">POLÍTICA · 23/11/2026</span><h3 className="mt-2 text-xl font-extrabold text-slate-900">Júlio César reforça esporte e proteção às mulheres entre prioridades para 2027</h3><p className="mt-2 text-slate-700">Reeleito para a Câmara, o parlamentar defende oportunidades para jovens e fortalecimento de serviços de acolhimento.</p><strong className="mt-3 block text-blue-800">LER REPORTAGEM COMPLETA →</strong></div>
+            </a>
+            <a href="/noticia/roney-nemer-retorno-cldf-mandato-participativo-2027" className="overflow-hidden rounded-xl border border-amber-300 bg-white shadow-md hover:shadow-xl">
+              <img src="https://images.metroimg.com/2022/04/12154107/roney-2.jpg" alt="Rôney Nemer em fotografia real de arquivo" className="h-56 w-full object-cover object-top" />
+              <div className="p-5"><span className="text-xs font-black text-amber-700">DISTRITO FEDERAL · 23/11/2026</span><h3 className="mt-2 text-xl font-extrabold text-slate-900">Rôney Nemer prepara retorno à CLDF com proposta de mandato participativo</h3><p className="mt-2 text-slate-700">Deputado distrital eleito destaca saúde, transporte, regularização e diálogo com comunidades.</p><strong className="mt-3 block text-blue-800">LER REPORTAGEM COMPLETA →</strong></div>
+            </a>
           </div>
         </section>
         <TrendingBar posts={[...edicao31Posts, ...postsDestaques]} />
