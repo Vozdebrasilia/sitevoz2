@@ -1,4 +1,10 @@
+'use client';
+import { usePathname } from 'next/navigation';
+
 export default function TerracapBanner() {
+  const pathname = usePathname();
+  // Exibe publicidade institucional apenas na capa, deixando páginas internas livres para captura de tela.
+  if (pathname !== '/') return null;
   const href = "/anuncio/terracap";
   return (
     <div className="w-full bg-white border-b border-gray-100 py-3">
